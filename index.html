@@ -4,144 +4,225 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>היבטים משפטיים בניהול — אתר תרגול למבחן</title>
+<meta name="description" content="אתר תרגול לבחינה בדיני חוזים: 88 שאלות רב-ברירה, 57 היגדים, 17 קייסים, 3 מבחנים מדמים ודף עזר להדפסה.">
+</head>
+<body>
 <style>
 :root{
-  --bg:#f6f5f2; --surface:#ffffff; --text:#1c1c1a; --muted:#6b6b64;
-  --border:#e2e0d9; --accent:#7a1f2b; --accent2:#a8323f; --accentSoft:#f7ebec;
-  --okBg:#e7f4ea; --okBd:#9cd3ae; --okTx:#186b28;
-  --errBg:#fbeaea; --errBd:#e4a2a2; --errTx:#b02c2c;
-  --warnBg:#fdf4e3; --warnBd:#e8cd93; --warnTx:#8a6112;
-  --chipBg:#efeee9;
+  --paper:#f4f5f7; --surface:#ffffff; --ink:#16202e; --muted:#5c6773;
+  --rule:#d9dde4; --rule2:#eceef2;
+  --accent:#1d4f8f; --accentTint:#e7edf6; --accentInk:#12395f;
+  --ok:#186a3c; --okBg:#e8f3ec; --okRule:#9cc5ad;
+  --bad:#a32b2b; --badBg:#f8eaea; --badRule:#dda6a6;
+  --flag:#8a6112; --flagBg:#fbf3e2; --flagRule:#e0c896;
+  --chip:#eef0f4;
+  --sans:"Assistant","Rubik","Heebo","Segoe UI","Noto Sans Hebrew",Arial,sans-serif;
+  --serif:"Frank Ruehl CLM","FrankRuehl","David","Noto Serif Hebrew",Georgia,"Times New Roman",serif;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#191917; --surface:#232320; --text:#eceae7; --muted:#a2a29a;
-    --border:#38382f; --accent:#d98a95; --accent2:#e8a5ae; --accentSoft:#382226;
-    --okBg:#15321e; --okBd:#2f6b3f; --okTx:#82d69c;
-    --errBg:#391c1c; --errBd:#7a3535; --errTx:#eb9797;
-    --warnBg:#39301a; --warnBd:#7a6425; --warnTx:#e5c37a;
-    --chipBg:#2e2e29;
+    --paper:#12161c; --surface:#1a1f27; --ink:#e4e8ee; --muted:#9aa5b3;
+    --rule:#2b323c; --rule2:#232932;
+    --accent:#7ea9dd; --accentTint:#1b2836; --accentInk:#a8c6e8;
+    --ok:#78c99a; --okBg:#152a1e; --okRule:#2f5f42;
+    --bad:#e59a9a; --badBg:#2c1a1a; --badRule:#6b3434;
+    --flag:#e0bd77; --flagBg:#2c2415; --flagRule:#6b5626;
+    --chip:#242b34;
   }
 }
-html.dark{
-  --bg:#191917; --surface:#232320; --text:#eceae7; --muted:#a2a29a;
-  --border:#38382f; --accent:#d98a95; --accent2:#e8a5ae; --accentSoft:#382226;
-  --okBg:#15321e; --okBd:#2f6b3f; --okTx:#82d69c;
-  --errBg:#391c1c; --errBd:#7a3535; --errTx:#eb9797;
-  --warnBg:#39301a; --warnBd:#7a6425; --warnTx:#e5c37a;
-  --chipBg:#2e2e29;
+:root[data-theme="dark"]{
+  --paper:#12161c; --surface:#1a1f27; --ink:#e4e8ee; --muted:#9aa5b3;
+  --rule:#2b323c; --rule2:#232932;
+  --accent:#7ea9dd; --accentTint:#1b2836; --accentInk:#a8c6e8;
+  --ok:#78c99a; --okBg:#152a1e; --okRule:#2f5f42;
+  --bad:#e59a9a; --badBg:#2c1a1a; --badRule:#6b3434;
+  --flag:#e0bd77; --flagBg:#2c2415; --flagRule:#6b5626;
+  --chip:#242b34;
 }
-html.light{
-  --bg:#f6f5f2; --surface:#ffffff; --text:#1c1c1a; --muted:#6b6b64;
-  --border:#e2e0d9; --accent:#7a1f2b; --accent2:#a8323f; --accentSoft:#f7ebec;
-  --okBg:#e7f4ea; --okBd:#9cd3ae; --okTx:#186b28;
-  --errBg:#fbeaea; --errBd:#e4a2a2; --errTx:#b02c2c;
-  --warnBg:#fdf4e3; --warnBd:#e8cd93; --warnTx:#8a6112;
-  --chipBg:#efeee9;
+:root[data-theme="light"]{
+  --paper:#f4f5f7; --surface:#ffffff; --ink:#16202e; --muted:#5c6773;
+  --rule:#d9dde4; --rule2:#eceef2;
+  --accent:#1d4f8f; --accentTint:#e7edf6; --accentInk:#12395f;
+  --ok:#186a3c; --okBg:#e8f3ec; --okRule:#9cc5ad;
+  --bad:#a32b2b; --badBg:#f8eaea; --badRule:#dda6a6;
+  --flag:#8a6112; --flagBg:#fbf3e2; --flagRule:#e0c896;
+  --chip:#eef0f4;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:'Segoe UI',Arial,'Helvetica Neue',sans-serif;line-height:1.65;}
-.wrap{max-width:860px;margin:0 auto;padding:22px;}
-header h1{font-size:23px;margin:0 0 4px;}
-header .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px;}
-.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:10px;}
-.tab{background:var(--chipBg);border:1px solid var(--border);color:var(--text);
-  border-radius:999px;padding:7px 15px;font-size:13.5px;cursor:pointer;transition:.15s;}
-.tab:hover{border-color:var(--accent);}
-.tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
-.toolbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:14px;}
-.chip{background:var(--chipBg);border:1px solid var(--border);color:var(--text);
-  border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;transition:.15s;}
-.chip:hover{border-color:var(--accent);}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:900px;margin:0 auto;padding:26px 20px 40px;}
+
+/* ---- masthead ---- */
+.mast{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:0;}
+.mast .eyebrow{font-size:11.5px;letter-spacing:.14em;color:var(--accent);
+  font-weight:700;margin-bottom:6px;}
+.mast h1{font-size:27px;line-height:1.2;margin:0 0 6px;font-weight:700;
+  letter-spacing:-.015em;text-wrap:balance;}
+.mast .sub{color:var(--muted);font-size:13px;}
+.mast .sub b{color:var(--ink);font-weight:600;}
+
+/* ---- tabs: document index, not pills ---- */
+.tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--rule);
+  margin:0 0 22px;overflow-x:auto;}
+.tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);
+  padding:11px 14px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;
+  white-space:nowrap;transition:color .12s,border-color .12s;margin-bottom:-1px;}
+.tab:hover{color:var(--ink);}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:3px;}
+
+/* ---- panels ---- */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  padding:22px;margin-bottom:16px;}
+
+/* ---- notes ---- */
+.note{background:var(--accentTint);border:0;border-inline-start:3px solid var(--accent);
+  border-radius:0 3px 3px 0;padding:12px 15px;font-size:13.5px;margin-bottom:16px;}
+.note b{color:var(--accentInk);font-weight:700;}
+.warn{background:var(--flagBg);border:0;border-inline-start:3px solid var(--flag);
+  border-radius:0 3px 3px 0;padding:12px 15px;font-size:13.5px;margin-bottom:16px;}
+.warn b{color:var(--flag);font-weight:700;}
+
+/* ---- toolbars ---- */
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:14px;}
+.chip{background:var(--chip);border:1px solid transparent;color:var(--muted);
+  border-radius:3px;padding:5px 11px;font-family:inherit;font-size:12.5px;font-weight:600;
+  cursor:pointer;transition:.12s;font-variant-numeric:tabular-nums;}
+.chip:hover{color:var(--ink);border-color:var(--rule);}
 .chip.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.iconbtn{background:none;border:1px solid var(--rule);color:var(--muted);
+  border-radius:3px;padding:5px 11px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;}
+.iconbtn:hover{border-color:var(--accent);color:var(--accent);}
+.iconbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .spacer{flex:1;}
-.iconbtn{background:var(--chipBg);border:1px solid var(--border);color:var(--text);
-  border-radius:8px;padding:5px 11px;font-size:12.5px;cursor:pointer;}
-.iconbtn:hover{border-color:var(--accent);}
-.note{background:var(--accentSoft);border:1px solid var(--border);border-radius:10px;
-  padding:11px 14px;font-size:13px;margin-bottom:14px;}
-.note b{color:var(--accent);}
-.warn{background:var(--warnBg);border:1px solid var(--warnBd);border-radius:10px;
-  padding:11px 14px;font-size:13px;margin-bottom:14px;color:var(--text);}
-.stats{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;margin-bottom:12px;color:var(--muted);}
-.stats b{color:var(--text);}
-.bar{height:7px;background:var(--chipBg);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+
+/* ---- meters ---- */
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-bottom:10px;color:var(--muted);
+  font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-weight:700;}
+.bar{height:3px;background:var(--rule2);overflow:hidden;margin-bottom:20px;}
 .bar>i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
-.qmeta{font-size:12px;color:var(--muted);margin-bottom:6px;}
-.qtext{font-size:17px;font-weight:600;margin-bottom:14px;white-space:pre-wrap;}
-.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);
-  border-radius:10px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:.12s;background:var(--surface);}
-.opt:hover{border-color:var(--accent);background:var(--accentSoft);}
-.opt .ltr{font-weight:700;color:var(--accent);min-width:20px;}
-.opt.correct{background:var(--okBg);border-color:var(--okBd);}
-.opt.correct .ltr{color:var(--okTx);}
-.opt.wrong{background:var(--errBg);border-color:var(--errBd);}
-.opt.wrong .ltr{color:var(--errTx);}
+
+/* ---- question ---- */
+.qmeta{font-size:11.5px;letter-spacing:.06em;color:var(--accent);font-weight:700;margin-bottom:8px;}
+.qmeta i{color:var(--muted);font-weight:400;letter-spacing:0;}
+.qtext{font-size:18px;font-weight:600;line-height:1.5;margin-bottom:16px;
+  white-space:pre-wrap;letter-spacing:-.01em;text-wrap:pretty;}
+.opt{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--rule);
+  border-inline-start:3px solid transparent;border-radius:3px;padding:11px 13px;margin-bottom:8px;
+  cursor:pointer;transition:.12s;background:var(--surface);}
+.opt:hover{border-color:var(--accent);border-inline-start-color:var(--accent);background:var(--accentTint);}
+.opt .ltr{font-weight:700;color:var(--accent);min-width:18px;}
+.opt.correct{background:var(--okBg);border-color:var(--okRule);border-inline-start-color:var(--ok);}
+.opt.correct .ltr{color:var(--ok);}
+.opt.wrong{background:var(--badBg);border-color:var(--badRule);border-inline-start-color:var(--bad);}
+.opt.wrong .ltr{color:var(--bad);}
 .opt.locked{cursor:default;}
-.opt.locked:hover{background:var(--surface);}
-.opt.correct.locked:hover{background:var(--okBg);}
-.opt.wrong.locked:hover{background:var(--errBg);}
-.expl{margin-top:6px;padding:13px;border-radius:10px;background:var(--accentSoft);
-  border:1px solid var(--border);font-size:13.5px;display:none;white-space:pre-wrap;}
+.opt.locked:hover{background:var(--surface);border-color:var(--rule);border-inline-start-color:transparent;}
+.opt.correct.locked:hover{background:var(--okBg);border-color:var(--okRule);border-inline-start-color:var(--ok);}
+.opt.wrong.locked:hover{background:var(--badBg);border-color:var(--badRule);border-inline-start-color:var(--bad);}
+
+.expl{margin-top:12px;padding:14px 16px;background:var(--accentTint);
+  border-inline-start:3px solid var(--accent);border-radius:0 3px 3px 0;
+  font-size:14px;display:none;white-space:pre-wrap;line-height:1.7;}
 .expl.show{display:block;}
-.expl .tag{font-weight:700;color:var(--accent);}
-.nav{display:flex;gap:9px;margin-top:16px;}
-.btn{flex:1;background:var(--chipBg);border:1px solid var(--border);color:var(--text);
-  border-radius:10px;padding:11px;font-size:14.5px;cursor:pointer;}
-.btn:hover{border-color:var(--accent);}
+.expl .tag{font-weight:700;color:var(--accentInk);letter-spacing:.04em;}
+
+/* ---- buttons ---- */
+.nav{display:flex;gap:8px;margin-top:18px;}
+.btn{flex:1;background:var(--surface);border:1px solid var(--rule);color:var(--ink);
+  border-radius:3px;padding:11px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;
+  transition:.12s;}
+.btn:hover{border-color:var(--accent);color:var(--accent);}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .btn-pri{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-pri:hover{background:var(--accentInk);border-color:var(--accentInk);color:#fff;}
 .btn:disabled{opacity:.4;cursor:not-allowed;}
-.palette{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
-.pbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);
-  background:var(--surface);color:var(--text);font-size:12.5px;cursor:pointer;}
+
+/* ---- question map ---- */
+.palette{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.pbtn{width:30px;height:30px;border-radius:2px;border:1px solid var(--rule);
+  background:var(--surface);color:var(--muted);font-family:inherit;font-size:12px;font-weight:600;
+  cursor:pointer;font-variant-numeric:tabular-nums;}
+.pbtn:hover{border-color:var(--accent);}
 .pbtn.cur{outline:2px solid var(--accent);outline-offset:1px;}
-.pbtn.ok{background:var(--okBg);border-color:var(--okBd);color:var(--okTx);}
-.pbtn.bad{background:var(--errBg);border-color:var(--errBd);color:var(--errTx);}
-.palette-title{font-size:12.5px;color:var(--muted);margin-bottom:7px;}
+.pbtn.ok{background:var(--okBg);border-color:var(--okRule);color:var(--ok);}
+.pbtn.bad{background:var(--badBg);border-color:var(--badRule);color:var(--bad);}
+.palette-title{font-size:11.5px;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:9px;}
+
+/* ---- results ---- */
 .result{text-align:center;}
-.result .big{font-size:44px;font-weight:800;color:var(--accent);}
-.result .grade{font-size:17px;margin:8px 0 14px;}
-.tf-btns{display:flex;gap:10px;margin:12px 0;}
+.result .big{font-size:56px;font-weight:700;color:var(--accent);line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em;}
+.result .grade{font-size:16px;margin:10px 0 18px;color:var(--muted);}
+
+/* ---- true/false ---- */
+.tf-btns{display:flex;gap:8px;margin:14px 0;}
 .tf-btns .btn{flex:1;}
-.tf-btns .btn.sel-t{background:var(--okBg);border-color:var(--okBd);color:var(--okTx);}
-.tf-btns .btn.sel-f{background:var(--errBg);border-color:var(--errBd);color:var(--errTx);}
-textarea{width:100%;min-height:70px;border:1px solid var(--border);border-radius:10px;
-  padding:10px;font-family:inherit;font-size:14px;background:var(--surface);color:var(--text);resize:vertical;}
-.caseText{white-space:pre-wrap;font-size:14.5px;line-height:1.75;}
-.sol{display:none;margin-top:14px;padding:14px;border-radius:10px;background:var(--accentSoft);
-  border:1px solid var(--border);font-size:14px;white-space:pre-wrap;line-height:1.8;}
+.tf-btns .btn.sel-t{background:var(--okBg);border-color:var(--ok);color:var(--ok);}
+.tf-btns .btn.sel-f{background:var(--badBg);border-color:var(--bad);color:var(--bad);}
+textarea{width:100%;min-height:74px;border:1px solid var(--rule);border-radius:3px;
+  padding:11px;font-family:inherit;font-size:14px;background:var(--paper);color:var(--ink);
+  resize:vertical;line-height:1.6;}
+textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent);}
+.field-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
+
+/* ---- cases & exams ---- */
+.caseText{white-space:pre-wrap;font-size:15px;line-height:1.8;}
+.sol{display:none;margin-top:16px;padding:18px;background:var(--accentTint);
+  border-inline-start:3px solid var(--accent);border-radius:0 3px 3px 0;
+  font-size:14.5px;white-space:pre-wrap;line-height:1.85;}
 .sol.show{display:block;}
-.caseList{list-style:none;padding:0;margin:0;}
-.caseList li{border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:8px;
-  cursor:pointer;font-size:14px;background:var(--surface);}
-.caseList li:hover{border-color:var(--accent);background:var(--accentSoft);}
-.caseList li .lvl{float:left;font-size:11.5px;color:var(--muted);border:1px solid var(--border);
-  border-radius:999px;padding:1px 8px;}
+.caseList{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0;}
+.caseList li{border-bottom:1px solid var(--rule2);padding:14px 4px;cursor:pointer;
+  font-size:14.5px;transition:.12s;position:relative;}
+.caseList li:last-child{border-bottom:0;}
+.caseList li:hover{background:var(--accentTint);}
+.caseList li .lvl{float:left;font-size:11px;color:var(--muted);border:1px solid var(--rule);
+  border-radius:2px;padding:2px 8px;font-weight:600;white-space:nowrap;margin-inline-start:10px;}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);}
-.timer.low{color:var(--errTx);}
-h2.sec{font-size:17px;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-h3.sub2{font-size:15px;margin:16px 0 6px;color:var(--accent);}
-table.ref{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
-table.ref th,table.ref td{border:1px solid var(--border);padding:7px 9px;text-align:right;vertical-align:top;}
-table.ref th{background:var(--chipBg);font-weight:700;}
+.timer.low{color:var(--bad);}
+
+/* ---- reference sheet typography ---- */
+h2.sec{font-size:18px;margin:30px 0 12px;padding-bottom:7px;font-weight:700;
+  border-bottom:1px solid var(--rule);letter-spacing:-.015em;text-wrap:balance;}
+h2.sec:first-child{margin-top:0;}
+h3.sub2{font-size:14.5px;margin:20px 0 7px;color:var(--accent);font-weight:700;letter-spacing:.01em;}
+table.ref{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0;}
+table.ref th,table.ref td{border:1px solid var(--rule);padding:8px 10px;text-align:right;
+  vertical-align:top;line-height:1.6;}
+table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spacing:.03em;}
+.tblwrap{overflow-x:auto;}
+/* statutory quotations get the serif — how Hebrew law is actually set */
+.statute{font-family:var(--serif);font-size:15px;line-height:1.85;}
+.statute b{font-family:var(--sans);font-size:13.5px;}
+
 .hide{display:none!important;}
-.kbd{background:var(--chipBg);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:12px;}
-.foot{color:var(--muted);font-size:12px;text-align:center;padding:10px 0 24px;}
-@media (max-width:560px){
-  .wrap{padding:14px;} .card{padding:16px;} .qtext{font-size:15.5px;}
-  .pbtn{width:29px;height:29px;font-size:11.5px;}
-  header h1{font-size:19px;}
+.kbd{background:var(--chip);border:1px solid var(--rule);border-radius:2px;
+  padding:1px 6px;font-size:12px;font-weight:600;}
+.foot{color:var(--muted);font-size:12px;text-align:center;padding:22px 0 0;
+  border-top:1px solid var(--rule);margin-top:26px;}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;}
+}
+@media (max-width:600px){
+  .wrap{padding:18px 14px 30px;}
+  .card{padding:16px;}
+  .mast h1{font-size:21px;}
+  .qtext{font-size:16px;}
+  .pbtn{width:27px;height:27px;font-size:11px;}
+  .tab{padding:10px;font-size:13px;}
 }
 </style>
-</head>
-<body>
-<div class="wrap">
-<header>
-  <h1>היבטים משפטיים בניהול — אתר תרגול למבחן</h1>
-  <div class="sub">עו"ד נאוה קורמן · אוניברסיטת בר-אילן · דיני חוזים (חלק כללי + תרופות) · <b>בחינה בחומר פתוח</b></div>
+
+<div class="wrap" dir="rtl">
+<header class="mast">
+  <div class="eyebrow">בר-אילן · עו"ד נאוה קורמן</div>
+  <h1>היבטים משפטיים בניהול — תרגול למבחן</h1>
+  <div class="sub">חוק החוזים (חלק כללי) התשל"ג-1973 · חוק החוזים (תרופות בשל הפרת חוזה) התשל"א-1970 · <b>בחינה בחומר פתוח</b></div>
 </header>
 
 <div class="tabs" id="tabs">
@@ -167,18 +248,18 @@ table.ref th{background:var(--chipBg);font-weight:700;}
       (ולפי הצורך פסק דין). המרצה מנקדת לפי <b>יסודות</b> — עוברים יסוד-יסוד ומיישמים על העובדות.</div>
 
     <h2 class="sec">מה יש כאן</h2>
-    <table class="ref">
+    <div class="tblwrap"><table class="ref">
       <tr><th style="width:150px">חלק</th><th>תיאור</th></tr>
-      <tr><td><b>תרגול רב-ברירה</b></td><td>מאגר שאלות אמריקאיות בסגנון המבחן, כולל שאלות אמיתיות ממועדי עבר ומשאלות הבונוס במודל. סינון לפי נושא, הסבר מלא עם סעיפים לכל שאלה.</td></tr>
-      <tr><td><b>היגדים</b></td><td>נכון/לא נכון + נימוק — בדיוק הפורמט של 30 הנקודות. כותבים נימוק, ואז משווים לתשובת המודל.</td></tr>
-      <tr><td><b>קייסים פתוחים</b></td><td>אירועים מלאים ממבחני עבר ומהתרגולים, עם שלד פתרון מפורט.</td></tr>
-      <tr><td><b>בוחן קצר</b></td><td>10 שאלות אקראיות עם ציון — לבדיקה מהירה.</td></tr>
+      <tr><td><b>תרגול רב-ברירה</b></td><td>88 שאלות בסגנון המבחן, כולל השאלות האמיתיות ממועד א' תשפ"א, מתשע"ח ומשאלות הבונוס במודל. סינון לפי נושא, הסבר מלא עם סעיפים לכל שאלה.</td></tr>
+      <tr><td><b>היגדים</b></td><td>57 היגדים נכון/לא נכון + נימוק — בדיוק הפורמט של 30 הנקודות. כותבים נימוק, ואז משווים לתשובת המודל.</td></tr>
+      <tr><td><b>קייסים פתוחים</b></td><td>17 אירועים מלאים ממבחני עבר ומהתרגולים, עם שלד פתרון מפורט.</td></tr>
+      <tr><td><b>בוחן קצר</b></td><td>שאלות אקראיות עם טיימר וציון — לבדיקה מהירה, כמו בוחן חצי השעה בכיתה.</td></tr>
       <tr><td><b>מבחן מדמה</b></td><td>3 מבחנים מלאים בפורמט המדויק (50+30+20) עם טיימר ופתרון מלא.</td></tr>
-      <tr><td><b>דף עזר למבחן</b></td><td>הדף שלוקחים לבחינה: שלדי תשובה, כל הסעיפים, טבלת פסקי דין, עצי החלטה. <b>מיועד להדפסה.</b></td></tr>
-    </table>
+      <tr><td><b>דף עזר למבחן</b></td><td>מה שלוקחים לבחינה: שלדי תשובה, כל הסעיפים, טבלת פסקי דין, עצי החלטה, דגלים אדומים.</td></tr>
+    </table></div>
 
     <h2 class="sec">מפת הקורס בעמוד אחד</h2>
-    <table class="ref">
+    <div class="tblwrap"><table class="ref">
       <tr><th style="width:190px">נושא</th><th>סעיפים מרכזיים</th></tr>
       <tr><td>עקרונות וחופש החוזים</td><td>חו"ח 23 (צורה), 24 (תוכן), 30 (חוזה פסול) · מקרקעין 8 (כתב) · כשרות 2–5</td></tr>
       <tr><td>הצעה וקיבול</td><td>חו"ח 1–11</td></tr>
@@ -191,9 +272,9 @@ table.ref th{background:var(--chipBg);font-weight:700;}
       <tr><td>ביטול והשבה</td><td>תרופות 6, 7, 8, 9</td></tr>
       <tr><td>פיצויים</td><td>תרופות 10, 11, 13, 14, 15</td></tr>
       <tr><td>הפרה צפויה וסיכול</td><td>תרופות 17, 18</td></tr>
-    </table>
-    <div class="note" style="margin-top:14px"><b>לא במבחן:</b> עושק (ס' 18 לחו"ח) · ס' 27(ג) · ס' 3(3) לתרופות במתכונת ההיסטורית ·
-      תרופות ס' 4–5 · חו"ח 57–58. (לפי הודעות המרצה בסיכום הקורס.)</div>
+    </table></div>
+    <div class="note" style="margin-top:16px"><b>לא במבחן:</b> עושק (ס' 18 לחו"ח) · ס' 27(ג) · תרופות ס' 4–5 · חו"ח 57–58.
+      (לפי הודעות המרצה בסיכום הקורס.)</div>
   </div>
 </div>
 
@@ -204,8 +285,6 @@ table.ref th{background:var(--chipBg);font-weight:700;}
     <div class="toolbar">
       <button class="iconbtn" id="mcShuffle">ערבוב</button>
       <button class="iconbtn" id="mcReset">איפוס</button>
-      <span class="spacer"></span>
-      <button class="iconbtn" id="themeBtn">מצב כהה/בהיר</button>
     </div>
     <div class="stats"><span>שאלה <b id="mcPos">1</b>/<b id="mcTot">0</b></span>
       <span>נכונות: <b id="mcOk">0</b></span><span>שגויות: <b id="mcBad">0</b></span>
@@ -244,7 +323,7 @@ table.ref th{background:var(--chipBg);font-weight:700;}
       <button class="btn" id="tfTrue">נכון</button>
       <button class="btn" id="tfFalse">לא נכון</button>
     </div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:5px">הנימוק שלך (התאמנו לכתוב אותו — זה מה שנותן את הנקודות):</div>
+    <div class="field-label">הנימוק שלך — התאמנו לכתוב אותו, זה מה שנותן את הנקודות:</div>
     <textarea id="tfMine" placeholder="לדוגמה: לא נכון — ס' 12(ב) מעניק תרופה של פיצויים בלבד, לא ביטול."></textarea>
     <div class="expl" id="tfExpl"></div>
     <div class="nav">
@@ -271,8 +350,8 @@ table.ref th{background:var(--chipBg);font-weight:700;}
     <h2 class="sec" id="caseTitle"></h2>
     <div class="qmeta" id="caseSrc"></div>
     <div class="caseText" id="caseBody"></div>
-    <div style="font-size:13px;color:var(--muted);margin:14px 0 5px">שלד התשובה שלך:</div>
-    <textarea id="caseMine" style="min-height:150px"></textarea>
+    <div class="field-label" style="margin-top:18px">שלד התשובה שלך:</div>
+    <textarea id="caseMine" style="min-height:160px"></textarea>
     <div class="nav">
       <button class="btn btn-pri" id="caseShow">הצג פתרון מודל</button>
     </div>
@@ -283,8 +362,8 @@ table.ref th{background:var(--chipBg);font-weight:700;}
 <!-- ============ QUIZ ============ -->
 <div id="v-quiz" class="hide">
   <div class="card" id="quizStart">
-    <h2 class="sec" style="margin-top:0">בוחן קצר</h2>
-    <div class="note">10 שאלות רב-ברירה אקראיות מכל החומר. אין הסברים תוך כדי — הציון והפתרונות בסוף.
+    <h2 class="sec">בוחן קצר</h2>
+    <div class="note">שאלות רב-ברירה אקראיות מכל החומר. אין הסברים תוך כדי — הציון והפתרונות בסוף.
       זה הפורמט של <b>הבוחן בכיתה</b>: חצי שעה, חומר פתוח, ללא מחשבים.</div>
     <div class="toolbar" id="quizLenBtns"></div>
     <button class="btn btn-pri" id="quizGo">התחל בוחן</button>
@@ -300,7 +379,7 @@ table.ref th{background:var(--chipBg);font-weight:700;}
       <button class="btn btn-pri" id="qzNext">הבא</button>
       <button class="btn" id="qzSubmit">סיים והצג ציון</button>
     </div>
-    <div class="palette" id="qzPal" style="margin-top:14px"></div>
+    <div class="palette" id="qzPal" style="margin-top:16px"></div>
   </div>
   <div class="card hide result" id="quizRes"></div>
 </div>
@@ -308,7 +387,7 @@ table.ref th{background:var(--chipBg);font-weight:700;}
 <!-- ============ EXAM ============ -->
 <div id="v-exam" class="hide">
   <div class="card" id="examIndex">
-    <h2 class="sec" style="margin-top:0">מבחן מדמה</h2>
+    <h2 class="sec">מבחן מדמה</h2>
     <div class="note">מבחן מלא בפורמט האמיתי: <b>אירוע 50 נק' + 6 היגדים 30 נק' + 5 רב-ברירה 20 נק'</b>.
       מומלץ: טיימר של 90 דקות, דף עזר פתוח, ולכתוב ביד — בדיוק כמו במבחן.</div>
     <ul class="caseList" id="examUl"></ul>
@@ -329,9 +408,7 @@ table.ref th{background:var(--chipBg);font-weight:700;}
 <!-- ============ REF ============ -->
 <div id="v-ref" class="hide">
   <div class="card">
-    <div class="note"><b>זה הדף שלוקחים לבחינה.</b> כאן הוא לקריאה מהירה.
-      <b><a href="cheatsheet.html" target="_blank" rel="noopener" style="color:var(--accent)">לגרסה המעוצבת להדפסה →</a></b>
-      (פותחים ומדפיסים ב-Ctrl+P, מומלץ דו-צדדי).</div>
+    <div class="note"><b>זה הדף שלוקחים לבחינה.</b> כאן הוא לקריאה מהירה. <b><a href="cheatsheet.html" target="_blank" rel="noopener" style="color:var(--accentInk)">לגרסה המעוצבת להדפסה →</a></b> (Ctrl+P, מומלץ דו-צדדי).</div>
     <div id="refBody"></div>
   </div>
 </div>
@@ -340,6 +417,9 @@ table.ref th{background:var(--chipBg);font-weight:700;}
 </div>
 
 <script>
+document.documentElement.setAttribute("dir","rtl");
+document.documentElement.setAttribute("lang","he");
+
 /* ==================== DATA: MULTIPLE CHOICE ==================== */
 const MC = [
 /* --- הצעה וקיבול --- */
@@ -2297,7 +2377,7 @@ const REF_HTML = `
 </table>
 
 <h2 class="sec">11 · נוסחי סעיפים מרכזיים (לצטט מילה במילה)</h2>
-<div class="caseText"><b>חוק החוזים (חלק כללי), התשל"ג-1973</b>
+<div class="caseText statute"><b>חוק החוזים (חלק כללי), התשל"ג-1973</b>
 
 <b>2.</b> פנייתו של אדם לחברו היא בגדר הצעה, אם היא מעידה על גמירת דעתו של המציע להתקשר עם הניצע בחוזה והיא מסויימת כדי אפשרות לכרות את החוזה בקיבול ההצעה; הפנייה יכול שתהיה לציבור.
 
@@ -2385,18 +2465,10 @@ document.querySelectorAll("#tabs .tab").forEach(b=>{
     const v = b.dataset.view;
     VIEWS.forEach(x=>$("v-"+x).classList.toggle("hide", x!==v));
     window.scrollTo(0,0);
-    if(v==="ref" && !$("refBody").innerHTML) $("refBody").innerHTML = REF_HTML;
+    if(v==="ref" && !$("refBody").innerHTML){ $("refBody").innerHTML = REF_HTML; $("refBody").querySelectorAll("table.ref").forEach(t=>{ const w=document.createElement("div"); w.className="tblwrap"; t.parentNode.insertBefore(w,t); w.appendChild(t); }); }
   };
 });
 
-/* ---- theme ---- */
-$("themeBtn").onclick = ()=>{
-  const h = document.documentElement;
-  const dark = h.classList.contains("dark") ||
-    (!h.classList.contains("light") && window.matchMedia("(prefers-color-scheme:dark)").matches);
-  h.classList.remove("dark","light");
-  h.classList.add(dark ? "light" : "dark");
-};
 
 const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
 
