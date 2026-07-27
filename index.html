@@ -163,6 +163,11 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
 .tf-btns .btn{flex:1;}
 .tf-btns .btn.sel-t{background:var(--okBg);border-color:var(--ok);color:var(--ok);}
 .tf-btns .btn.sel-f{background:var(--badBg);border-color:var(--bad);color:var(--bad);}
+/* verdict on commit — the score, not the reasoning; the model answer stays hidden */
+.verdict{font-size:13.5px;font-weight:600;padding:9px 13px;border-radius:0 3px 3px 0;
+  margin-bottom:13px;}
+.verdict.ok{background:var(--okBg);color:var(--ok);border-inline-start:3px solid var(--ok);}
+.verdict.no{background:var(--badBg);color:var(--bad);border-inline-start:3px solid var(--bad);}
 textarea{width:100%;min-height:74px;border:1px solid var(--rule);border-radius:3px;
   padding:11px;font-family:inherit;font-size:14px;background:var(--paper);color:var(--ink);
   resize:vertical;line-height:1.6;}
@@ -353,6 +358,7 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
       <button class="btn" id="tfTrue">נכון</button>
       <button class="btn" id="tfFalse">לא נכון</button>
     </div>
+    <div class="verdict hide" id="tfVerdict"></div>
     <div class="field-label">הנימוק שלך — התאמנו לכתוב אותו, זה מה שנותן את הנקודות:</div>
     <textarea id="tfMine" placeholder="לדוגמה: לא נכון — ס' 12(ב) מעניק תרופה של פיצויים בלבד, לא ביטול."></textarea>
     <div class="expl" id="tfExpl"></div>
@@ -2572,8 +2578,13 @@ $("mcShuffle").onclick=()=>{shuffle(mcList);mcI=0;mcRender();};
 $("mcReset").onclick=()=>{mcAns={};mcOk=0;mcBad=0;mcStreak=0;mcI=0;mcRender();};
 mcRenderFilters(); mcBuild();
 
-/* ================= TF ================= */
-let tfList=[], tfI=0, tfAns={}, tfTopic="הכל", tfOk=0;
+/* ================= TF =================
+   The written reasoning and the reveal state are keyed by the statement's
+   index in TF, not stored on the filtered copies — otherwise changing topic
+   or shuffling silently discards what the user wrote.
+   Committing an answer shows only the verdict; the model reasoning waits for
+   the button, so the user still has to produce the justification themselves. */
+let tfList=[], tfI=0, tfAns={}, tfMine={}, tfShown={}, tfTopic="הכל", tfOk=0;
 function tfBuild(){
   tfList = TF.map((q,i)=>({...q,_id:i})).filter(q=>tfTopic==="הכל"||q.t===tfTopic);
   tfI=0; tfRender();
@@ -2598,9 +2609,17 @@ function tfRender(){
   const a=tfAns[q._id];
   $("tfTrue").className="btn"+(a===true?" sel-t":"");
   $("tfFalse").className="btn"+(a===false?" sel-f":"");
-  $("tfMine").value = q._mine || "";
+  $("tfMine").value = tfMine[q._id] || "";
+  const v=$("tfVerdict");
+  if(a===undefined){ v.className="verdict hide"; v.textContent=""; }
+  else if(a===q.a){ v.className="verdict ok"; v.textContent="✓ צדקתם. עכשיו כתבו את הנימוק — זה מה שמנוקד."; }
+  else { v.className="verdict no"; v.textContent="✗ טעיתם. כתבו למה חשבתם כך, ואז השוו לתשובת המודל."; }
+  const shown = !!tfShown[q._id];
+  const btn=$("tfShow");
+  btn.textContent = shown ? "תשובת המודל מוצגת" : "הצג תשובת מודל";
+  btn.disabled = shown;
   const e=$("tfExpl");
-  if(q._shown){ e.classList.add("show"); e.innerHTML='<span class="tag">תשובת מודל · </span>'+q.e; }
+  if(shown){ e.classList.add("show"); e.innerHTML='<span class="tag">תשובת מודל · </span>'+q.e; }
   else { e.classList.remove("show"); e.innerHTML=""; }
   tfPal();
 }
@@ -2609,7 +2628,6 @@ function tfPick(v){
   if(tfAns[q._id]!==undefined) return;
   tfAns[q._id]=v;
   if(v===q.a) tfOk++;
-  q._shown=true;
   tfRender();
 }
 function tfPal(){
@@ -2624,14 +2642,14 @@ function tfPal(){
     w.appendChild(b);
   });
 }
-$("tfMine").oninput=e=>{ if(tfList[tfI]) tfList[tfI]._mine=e.target.value; };
+$("tfMine").oninput=e=>{ const q=tfList[tfI]; if(q) tfMine[q._id]=e.target.value; };
 $("tfTrue").onclick=()=>tfPick(true);
 $("tfFalse").onclick=()=>tfPick(false);
-$("tfShow").onclick=()=>{ if(tfList[tfI]){tfList[tfI]._shown=true;tfRender();} };
+$("tfShow").onclick=()=>{ const q=tfList[tfI]; if(q){ tfShown[q._id]=true; tfRender(); } };
 $("tfPrev").onclick=()=>{if(tfI>0){tfI--;tfRender();}};
 $("tfNext").onclick=()=>{if(tfI<tfList.length-1){tfI++;tfRender();}};
 $("tfShuffle").onclick=()=>{shuffle(tfList);tfI=0;tfRender();};
-$("tfReset").onclick=()=>{tfAns={};tfOk=0;tfList.forEach(q=>{q._shown=false;q._mine="";});tfI=0;tfRender();};
+$("tfReset").onclick=()=>{tfAns={};tfMine={};tfShown={};tfOk=0;tfI=0;tfRender();};
 tfRenderFilters(); tfBuild();
 
 /* ================= CASES ================= */
