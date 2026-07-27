@@ -199,6 +199,22 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
 .statute{font-family:var(--serif);font-size:15px;line-height:1.85;}
 .statute b{font-family:var(--sans);font-size:13.5px;}
 
+/* ---- how-to-use: an ordered study path, so the numbers carry real sequence ---- */
+.steps{list-style:none;counter-reset:step;padding:0;margin:14px 0 0;
+  display:flex;flex-direction:column;gap:0;}
+.steps li{counter-increment:step;position:relative;padding:14px 44px 14px 0;
+  border-bottom:1px solid var(--rule2);}
+.steps li:last-child{border-bottom:0;padding-bottom:2px;}
+.steps li::before{content:counter(step);position:absolute;inset-inline-start:0;top:14px;
+  width:26px;height:26px;border:1px solid var(--accent);border-radius:50%;
+  color:var(--accent);font-size:12.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;}
+.steps .st{font-weight:700;font-size:15px;display:block;margin-bottom:2px;}
+.steps .st em{font-style:normal;color:var(--accent);font-weight:700;}
+.steps p{margin:0;font-size:14px;color:var(--muted);line-height:1.65;}
+.steps p b{color:var(--ink);font-weight:600;}
+
 .hide{display:none!important;}
 .kbd{background:var(--chip);border:1px solid var(--rule);border-radius:2px;
   padding:1px 6px;font-size:12px;font-weight:600;}
@@ -247,16 +263,30 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
     <div class="warn"><b>הטעות הכי יקרה במבחן הזה:</b> לכתוב תשובה "ספרותית" בלי אסמכתאות. כל טענה חייבת מספר סעיף
       (ולפי הצורך פסק דין). המרצה מנקדת לפי <b>יסודות</b> — עוברים יסוד-יסוד ומיישמים על העובדות.</div>
 
-    <h2 class="sec">מה יש כאן</h2>
-    <div class="tblwrap"><table class="ref">
-      <tr><th style="width:150px">חלק</th><th>תיאור</th></tr>
-      <tr><td><b>תרגול רב-ברירה</b></td><td>88 שאלות בסגנון המבחן, כולל השאלות האמיתיות ממועד א' תשפ"א, מתשע"ח ומשאלות הבונוס במודל. סינון לפי נושא, הסבר מלא עם סעיפים לכל שאלה.</td></tr>
-      <tr><td><b>היגדים</b></td><td>57 היגדים נכון/לא נכון + נימוק — בדיוק הפורמט של 30 הנקודות. כותבים נימוק, ואז משווים לתשובת המודל.</td></tr>
-      <tr><td><b>קייסים פתוחים</b></td><td>17 אירועים מלאים ממבחני עבר ומהתרגולים, עם שלד פתרון מפורט.</td></tr>
-      <tr><td><b>בוחן קצר</b></td><td>שאלות אקראיות עם טיימר וציון — לבדיקה מהירה, כמו בוחן חצי השעה בכיתה.</td></tr>
-      <tr><td><b>מבחן מדמה</b></td><td>3 מבחנים מלאים בפורמט המדויק (50+30+20) עם טיימר ופתרון מלא.</td></tr>
-      <tr><td><b>דף עזר למבחן</b></td><td>מה שלוקחים לבחינה: שלדי תשובה, כל הסעיפים, טבלת פסקי דין, עצי החלטה, דגלים אדומים.</td></tr>
-    </table></div>
+    <h2 class="sec">איך לעבוד עם זה</h2>
+    <ol class="steps">
+      <li>
+        <span class="st">התחילו מ<em>דף עזר למבחן</em></span>
+        <p>קראו אותו פעם אחת מהתחלה לסוף. זה לא חומר לשינון — זו <b>מפה</b>. במבחן תחפשו בו תוך כדי כתיבה, אז השאלה היחידה שמשנה היא אם אתם יודעים מה יש בו ואיפה. יש שם גם גרסה מעוצבת להדפסה.</p>
+      </li>
+      <li>
+        <span class="st">בנו בסיס ב<em>תרגול רב-ברירה</em></span>
+        <p>88 שאלות, כולל השאלות האמיתיות ממועד א' תשפ"א, מתשע"ח ומשאלות הבונוס במודל. סננו לנושא אחד בכל פעם. <b>קראו את ההסבר גם כשצדקתם</b> — שם נמצאים מספרי הסעיפים ופסקי הדין שתצטרכו בחלק הפתוח.</p>
+      </li>
+      <li>
+        <span class="st">תרגלו ניסוח ב<em>היגדים</em></span>
+        <p>57 היגדים. אל תסתפקו בלחיצה על "נכון/לא נכון" — <b>כתבו את הנימוק בתיבה לפני שאתם מסתכלים בתשובה</b>. 30 הנקודות במבחן ניתנות על הנימוק ועל האסמכתא, לא על הבחירה.</p>
+      </li>
+      <li>
+        <span class="st">עברו ל<em>קייסים פתוחים</em></span>
+        <p>17 אירועים ממבחני עבר ומהתרגולים. כ-20 דקות לקייס, דף העזר פתוח לצידכם. כתבו שלד תשובה — יסוד ← יישום ← מסקנה ← סעד — <b>לפני</b> שאתם פותחים את הפתרון.</p>
+      </li>
+      <li>
+        <span class="st">סגרו עם <em>מבחן מדמה</em></span>
+        <p>3 מבחנים בפורמט המדויק (50+30+20). שמרו אותם לסוף, כשהחומר כבר יושב. טיימר 90 דקות, בכתב יד, בתוך מגבלת העמודים — כך תגלו אם אתם מספיקים. <em>בוחן קצר</em> הוא לבדיקה מהירה בין לבין.</p>
+      </li>
+    </ol>
+    <div class="warn" style="margin-top:16px"><b>שימו לב:</b> ההתקדמות אינה נשמרת — רענון הדף מאפס את המונים ואת מה שכתבתם. אם כתבתם תשובה שחשוב לכם לשמור, העתיקו אותה החוצה.</div>
 
     <h2 class="sec">מפת הקורס בעמוד אחד</h2>
     <div class="tblwrap"><table class="ref">
