@@ -86,6 +86,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
 
 /* ---- toolbars ---- */
 .toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:14px;}
+.chip.scope{border-color:var(--accent);color:var(--accentInk);font-weight:700}
 .chip{background:var(--chip);border:1px solid transparent;color:var(--muted);
   border-radius:3px;padding:5px 11px;font-family:inherit;font-size:12.5px;font-weight:600;
   cursor:pointer;transition:.12s;font-variant-numeric:tabular-nums;}
@@ -259,6 +260,23 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
 <!-- ============ HOME ============ -->
 <div id="v-home">
   <div class="card">
+    <div class="note" style="border-right-width:4px">
+      <b>⚠ שים לב — האתר הזה נבנה מחומרי הכיתה המקבילה</b> (שכבר נבחנה), ולא ממצגות הקורס שלך.
+      נבדק ב־29.8 מול 10 המצגות הרשמיות, קובץ החקיקה ו־8 הקלטות השיעורים:
+      <br>· <b>78 שאלות מתוך 145 הן בהיקף בוחן 8.9</b> — לחץ על הצ׳יפ <b>„בהיקף 8.9”</b> במסנני התרגול.
+      <br>· <b>12 מתוך 24 פסקי הדין שהמרצה שלך לימדה אינם מתורגלים כאן</b> — בהם זנדבנק, נווה עם,
+        שג״מ חניונים, אדרת שומרון, זעירא, פנידר, רבינוביץ, כרמל נ׳ טלמון וסיאני. את אלה יש לכסות
+        דרך <a href="https://bohanyzahal-cyber.github.io/bar-ilan-legal-aspects/">החוברת</a>.
+      <br>· מופיע כאן <b>פ״ד בוטקובסקי</b>, שאינו בחומרי הקורס שלך.
+    </div>
+
+    <div class="note">
+      <b>📘 חומרי הקורס שלך נמצאים כאן:</b>
+      <a href="https://bohanyzahal-cyber.github.io/bar-ilan-legal-aspects/"><b>חוברת ההכנה + ערכת בוחן + סיכומי ההקלטות</b></a>
+      — עיון, טבלאות שליפה, סיכומי 8 השיעורים ותרגול כתיבה.
+      <b>כאן</b> — תרגול: רב-ברירה, היגדים, קייסים ומבחנים מדמים.
+    </div>
+
     <div class="note"><b>מבנה המבחן האמיתי</b> (לפי מועדי עבר של המרצה):
       <br>· <b>אירוע/קייס פתוח — 50 נק'</b> (מחולק לתתי-שאלות)
       <br>· <b>6 היגדים נכון/לא נכון + נימוק — 30 נק'</b> (5 נק' כל אחד, עד שתי שורות, <b>חובה לציין סעיף חוק ו/או פ"ד</b>)
@@ -2508,20 +2526,34 @@ document.querySelectorAll("#tabs .tab").forEach(b=>{
 
 const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
 
+
+/* ---- "בהיקף 8.9" preset: topics in the quiz syllabus, minus items that
+        reach into ss.16-18 or the Remedies Law even inside those topics ---- */
+const SCOPE89_TOPICS = ["הצעה וקיבול", "תום לב במו\"מ", "זיכרון דברים", "פגמים ברצון", "צורה ותוכן", "ביטול והשבה"];
+const SCOPE89_OUT = ["לחוק התרופות", "חוק התרופות", "חוק החוזים (תרופות", "סיכול", "הפרה צפויה", "ס' 16", "ס' 17", "ס' 18", "סעיף 16", "סעיף 17", "סעיף 18"];
+function inScope89(q){
+  if (SCOPE89_TOPICS.indexOf(q.t) < 0) return false;
+  const hay = (q.q || "") + " " + (q.e || "") + " " + (q.o ? q.o.join(" ") : "");
+  for (let i = 0; i < SCOPE89_OUT.length; i++) if (hay.indexOf(SCOPE89_OUT[i]) >= 0) return false;
+  return true;
+}
+const SCOPE_LABEL = "בהיקף 8.9";
+
 /* ================= MC ================= */
 let mcList=[], mcI=0, mcAns={}, mcTopic="הכל", mcOk=0, mcBad=0, mcStreak=0;
 
 function mcTopics(){ return ["הכל", ...Array.from(new Set(MC.map(q=>q.t)))]; }
 function mcBuild(){
-  mcList = MC.map((q,i)=>({...q,_id:i})).filter(q=>mcTopic==="הכל"||q.t===mcTopic);
+  mcList = MC.map((q,i)=>({...q,_id:i})).filter(q=>
+    mcTopic==="הכל" ? true : (mcTopic===SCOPE_LABEL ? inScope89(q) : q.t===mcTopic));
   mcI=0; mcRender();
 }
 function mcRenderFilters(){
   const w=$("mcFilters"); w.innerHTML="";
-  mcTopics().forEach(t=>{
+  [SCOPE_LABEL, ...mcTopics()].forEach(t=>{
     const b=document.createElement("button");
-    b.className="chip"+(t===mcTopic?" active":"");
-    const n = t==="הכל"?MC.length:MC.filter(q=>q.t===t).length;
+    b.className="chip"+(t===mcTopic?" active":"")+(t===SCOPE_LABEL?" scope":"");
+    const n = t===SCOPE_LABEL?MC.filter(inScope89).length:(t==="הכל"?MC.length:MC.filter(q=>q.t===t).length);
     b.textContent = t+" ("+n+")";
     b.onclick=()=>{mcTopic=t; mcRenderFilters(); mcBuild();};
     w.appendChild(b);
@@ -2586,15 +2618,16 @@ mcRenderFilters(); mcBuild();
    the button, so the user still has to produce the justification themselves. */
 let tfList=[], tfI=0, tfAns={}, tfMine={}, tfShown={}, tfTopic="הכל", tfOk=0;
 function tfBuild(){
-  tfList = TF.map((q,i)=>({...q,_id:i})).filter(q=>tfTopic==="הכל"||q.t===tfTopic);
+  tfList = TF.map((q,i)=>({...q,_id:i})).filter(q=>
+    tfTopic==="הכל" ? true : (tfTopic===SCOPE_LABEL ? inScope89(q) : q.t===tfTopic));
   tfI=0; tfRender();
 }
 function tfRenderFilters(){
   const w=$("tfFilters"); w.innerHTML="";
-  ["הכל",...Array.from(new Set(TF.map(q=>q.t)))].forEach(t=>{
+  [SCOPE_LABEL,"הכל",...Array.from(new Set(TF.map(q=>q.t)))].forEach(t=>{
     const b=document.createElement("button");
-    b.className="chip"+(t===tfTopic?" active":"");
-    const n = t==="הכל"?TF.length:TF.filter(q=>q.t===t).length;
+    b.className="chip"+(t===tfTopic?" active":"")+(t===SCOPE_LABEL?" scope":"");
+    const n = t===SCOPE_LABEL?TF.filter(inScope89).length:(t==="הכל"?TF.length:TF.filter(q=>q.t===t).length);
     b.textContent=t+" ("+n+")";
     b.onclick=()=>{tfTopic=t;tfRenderFilters();tfBuild();};
     w.appendChild(b);
