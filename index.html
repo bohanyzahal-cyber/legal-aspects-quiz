@@ -186,6 +186,8 @@ textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:
   font-size:14.5px;transition:.12s;position:relative;}
 .caseList li:last-child{border-bottom:0;}
 .caseList li:hover{background:var(--accentTint);}
+.caseList .done{display:inline-block;margin-inline-start:8px;font-size:12px;font-weight:700;color:var(--ok);}
+.caseList .done.draft{color:var(--flag);}
 .caseList li .lvl{float:left;font-size:11px;color:var(--muted);border:1px solid var(--rule);
   border-radius:2px;padding:2px 8px;font-weight:600;white-space:nowrap;margin-inline-start:10px;}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);}
@@ -260,33 +262,19 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
 <!-- ============ HOME ============ -->
 <div id="v-home">
   <div class="card">
-    <div class="note" style="border-right-width:4px">
-      <b>⚠ שים לב — האתר הזה נבנה מחומרי הכיתה המקבילה</b> (שכבר נבחנה), ולא ממצגות הקורס שלך.
-      נבדק ב־29.8 מול 10 המצגות הרשמיות, קובץ החקיקה ו־8 הקלטות השיעורים:
-      <br>· <b>ההיקף אומת מול הסימונים בקובץ החקיקה של המרצה</b> (צהוב = לא נלמד):
-        בפנים ס׳ 1–12, 14–17, 19–24, 26, <b>27</b>, <b>29</b>, 30 · בחוץ ס׳ 13, 18, 25, <b>28</b>, 31–33, 51–53, 57–58, 60. — לחץ על הצ׳יפ <b>„בהיקף 8.9”</b> במסנני התרגול.
-      <br>· <b>ס׳ 18 (עושק) אינו נבחן כלל</b> — לא בבוחן ולא במבחן המסכם (המרצה, 30.8). שתי השאלות
-        שעוסקות בו נשארו במאגר לשלמות בלבד, ואינן נכנסות לפילטר. גם <b>ס׳ 16–17</b> (טעות סופר, כפייה)
-        מחוץ להיקף הבוחן.
-      <br>· <b>הפער נסגר (29.8):</b> 12 פסקי דין שהמרצה שלך לימדה לא היו מתורגלים כאן —
-        זנדבנק, נווה עם, שג״מ חניונים, אדרת שומרון, זעירא, פנידר, רבינוביץ, כרמל נ׳ טלמון,
-        סיאני, סאסי, פנפורד ותושייה. נוספו <b>12 שאלות חדשות</b> שמכסות את כולם (מסומנות
-        „פסיקת הקורס”).
-      <br>· מופיע כאן <b>פ״ד בוטקובסקי</b>, שאינו בחומרי הקורס שלך.
-    </div>
-
     <div class="note">
-      <b>📘 חומרי הקורס שלך נמצאים כאן:</b>
-      <a href="https://bohanyzahal-cyber.github.io/bar-ilan-legal-aspects/"><b>חוברת ההכנה + ערכת בוחן + סיכומי ההקלטות</b></a>
-      — עיון, טבלאות שליפה, סיכומי 8 השיעורים ותרגול כתיבה.
+      <b>📘 אתר הקורס:</b>
+      <a href="https://bohanyzahal-cyber.github.io/bar-ilan-legal-aspects/"><b>סיכום החומר וההכנה למבחן המסכם</b></a>
+      — סיכומי 11 השיעורים, פרק התרופות, הבוחן מ-8.9 עם הפתרון הרשמי, ומה ידוע על המבחן.
       <b>כאן</b> — תרגול: רב-ברירה, היגדים, קייסים ומבחנים מדמים.
     </div>
 
-    <div class="note"><b>מבנה המבחן האמיתי</b> (לפי מועדי עבר של המרצה):
+    <div class="note"><b>מבנה המבחן</b> (לפי מבחני עבר של המרצה):
       <br>· <b>אירוע/קייס פתוח — 50 נק'</b> (מחולק לתתי-שאלות)
       <br>· <b>6 היגדים נכון/לא נכון + נימוק — 30 נק'</b> (5 נק' כל אחד, עד שתי שורות, <b>חובה לציין סעיף חוק ו/או פ"ד</b>)
       <br>· <b>5 שאלות רב-ברירה — 20 נק'</b> (4 נק' כל אחת, "סמנו את המשפט הנכון ביותר")
-      <br>· משך: 1.5–3 שעות · <b>מגבלת מקום: 1.5–3 עמודים</b> — חריגה לא תיבדק · חומר פתוח.</div>
+      <br>· משך: 1.5–3 שעות · <b>מגבלת מקום: 1.5–3 עמודים</b> — חריגה לא תיבדק · חומר פתוח.
+      <br>· <b>חוק התרופות „תמיד מופיע במבחן, ובדרך כלל מנוקד בלפחות עשרים נקודות”</b> (המרצה, 22.9).</div>
 
     <div class="warn"><b>הטעות הכי יקרה במבחן הזה:</b> לכתוב תשובה "ספרותית" בלי אסמכתאות. כל טענה חייבת מספר סעיף
       (ולפי הצורך פסק דין). המרצה מנקדת לפי <b>יסודות</b> — עוברים יסוד-יסוד ומיישמים על העובדות.</div>
@@ -299,11 +287,11 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
       </li>
       <li>
         <span class="st">בנו בסיס ב<em>תרגול רב-ברירה</em></span>
-        <p>88 שאלות, כולל השאלות האמיתיות ממועד א' תשפ"א, מתשע"ח ומשאלות הבונוס במודל. סננו לנושא אחד בכל פעם. <b>קראו את ההסבר גם כשצדקתם</b> — שם נמצאים מספרי הסעיפים ופסקי הדין שתצטרכו בחלק הפתוח.</p>
+        <p>95 שאלות, כולל השאלות האמיתיות ממועד א' תשפ"א, מתשע"ח ומשאלות הבונוס במודל. סננו לנושא אחד בכל פעם. <b>קראו את ההסבר גם כשצדקתם</b> — שם נמצאים מספרי הסעיפים ופסקי הדין שתצטרכו בחלק הפתוח.</p>
       </li>
       <li>
         <span class="st">תרגלו ניסוח ב<em>היגדים</em></span>
-        <p>57 היגדים. אל תסתפקו בלחיצה על "נכון/לא נכון" — <b>כתבו את הנימוק בתיבה לפני שאתם מסתכלים בתשובה</b>. 30 הנקודות במבחן ניתנות על הנימוק ועל האסמכתא, לא על הבחירה.</p>
+        <p>69 היגדים. אל תסתפקו בלחיצה על "נכון/לא נכון" — <b>כתבו את הנימוק בתיבה לפני שאתם מסתכלים בתשובה</b>. 30 הנקודות במבחן ניתנות על הנימוק ועל האסמכתא, לא על הבחירה.</p>
       </li>
       <li>
         <span class="st">עברו ל<em>קייסים פתוחים</em></span>
@@ -314,7 +302,8 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
         <p>3 מבחנים בפורמט המדויק (50+30+20). שמרו אותם לסוף, כשהחומר כבר יושב. טיימר 90 דקות, בכתב יד, בתוך מגבלת העמודים — כך תגלו אם אתם מספיקים. <em>בוחן קצר</em> הוא לבדיקה מהירה בין לבין.</p>
       </li>
     </ol>
-    <div class="warn" style="margin-top:16px"><b>שימו לב:</b> ההתקדמות אינה נשמרת — רענון הדף מאפס את המונים ואת מה שכתבתם. אם כתבתם תשובה שחשוב לכם לשמור, העתיקו אותה החוצה.</div>
+    <div class="note" style="margin-top:16px"><b>💾 ההתקדמות נשמרת</b> בדפדפן הזה — תשובות, נימוקים, טיוטות הקייסים והמקום שבו עצרתם. „איפוס” בתרגול הרב-ברירה ובהיגדים מוחק אותה. בדפדפן או במחשב אחר מתחילים מההתחלה.
+      <br><b>⌨ מקשים:</b> ← הבא · → הקודם · 1–4 בחירת תשובה (בהיגדים: 1 = נכון, 2 = לא נכון).</div>
 
     <h2 class="sec">מפת הקורס בעמוד אחד</h2>
     <div class="tblwrap"><table class="ref">
@@ -325,14 +314,13 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
       <tr><td>תום לב במו"מ</td><td>חו"ח 12(א)+(ב) → תרופות 10, 13, 14</td></tr>
       <tr><td>פגמים ברצון</td><td>חו"ח 14 (טעות), 15 (הטעיה), 16 (טעות סופר), 17 (כפייה), 19, 20, 21</td></tr>
       <tr><td>חוזה על תנאי</td><td>חו"ח 27, 29</td></tr>
-      <tr><td>ריבוי חייבים ונושים</td><td>חו"ח 54, 55, 56, 59</td></tr>
+      <tr><td>ריבוי חייבים ונושים</td><td>חו"ח 54, 55, 56</td></tr>
       <tr><td>אכיפה</td><td>תרופות 2, 3(1)–3(4)</td></tr>
       <tr><td>ביטול והשבה</td><td>תרופות 6, 7, 8, 9</td></tr>
       <tr><td>פיצויים</td><td>תרופות 10, 11, 13, 14, 15</td></tr>
       <tr><td>הפרה צפויה וסיכול</td><td>תרופות 17, 18</td></tr>
     </table></div>
-    <div class="note" style="margin-top:16px"><b>לא במבחן:</b> עושק (ס' 18 לחו"ח) · ס' 27(ג) · תרופות ס' 4–5 · חו"ח 57–58.
-      (לפי הודעות המרצה בסיכום הקורס.)</div>
+    <div class="note" style="margin-top:16px"><b>לא במבחן, מפי המרצה:</b> עושק (ס' 18 לחו"ח) — „לא יהיה במבחן” · פירוש חוזה (ס' 25) · סיכול תנאי (ס' 28) · ריבוי חייבים 57–59 · תרופות ס' 4–5.</div>
   </div>
 </div>
 
@@ -412,9 +400,13 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
     <div class="field-label" style="margin-top:18px">שלד התשובה שלך:</div>
     <textarea id="caseMine" style="min-height:160px"></textarea>
     <div class="nav">
+      <button class="btn" id="casePrev">הקודם</button>
       <button class="btn btn-pri" id="caseShow">הצג פתרון מודל</button>
+      <button class="btn" id="caseNext">הבא</button>
     </div>
     <div class="sol" id="caseSol"></div>
+    <div class="palette-title" style="margin-top:18px">מפת קייסים</div>
+    <div class="palette" id="casePal"></div>
   </div>
 </div>
 
@@ -422,8 +414,8 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
 <div id="v-quiz" class="hide">
   <div class="card" id="quizStart">
     <h2 class="sec">בוחן קצר</h2>
-    <div class="note">שאלות רב-ברירה אקראיות מכל החומר. אין הסברים תוך כדי — הציון והפתרונות בסוף.
-      זה הפורמט של <b>הבוחן בכיתה</b>: חצי שעה, חומר פתוח, ללא מחשבים.</div>
+    <div class="note">שאלות רב-ברירה אקראיות מתוך מה שבהיקף המבחן. אין הסברים תוך כדי — הציון והפתרונות בסוף.
+      שלוש דקות לשאלה — תרגול לחלק האמריקאי של המבחן.</div>
     <div class="toolbar" id="quizLenBtns"></div>
     <button class="btn btn-pri" id="quizGo">התחל בוחן</button>
   </div>
@@ -458,9 +450,13 @@ table.ref th{background:var(--chip);font-weight:700;font-size:12.5px;letter-spac
     <h2 class="sec" id="examTitle"></h2>
     <div id="examBody"></div>
     <div class="nav">
+      <button class="btn" id="examPrev">המבחן הקודם</button>
       <button class="btn btn-pri" id="examShow">הצג פתרון מלא</button>
+      <button class="btn" id="examNext">המבחן הבא</button>
     </div>
     <div class="sol" id="examSol"></div>
+    <div class="palette-title" style="margin-top:18px">מבחנים</div>
+    <div class="palette" id="examPal"></div>
   </div>
 </div>
 
@@ -1024,7 +1020,7 @@ const MC = [
 ,
 
   /* --- נוסף: פסיקה מהמצגות הרשמיות של הקורס --- */
-  {t:"הצעה וקיבול",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"הצעה וקיבול",src:"פסיקת הקורס",
    q:'לפי הלכת זנדבנק נ׳ דנציגר, דרישת המסוימות מתקיימת כאשר:',
    o:["ההצעה מלאה ומדויקת במידה מספקת, כך שדי בקיבולה כדי שייכרת חוזה בר־ביצוע — בלי צורך במשא ומתן משלים.",
       "כל פרט ועניין הכרוך בחוזה פורטו בהצעה מראש.",
@@ -1033,7 +1029,7 @@ const MC = [
    a:0,
    e:"ע\"א 440/75 זנדבנק נ׳ דנציגר. המבחן הוא <b>עיקרי הדברים</b> — די בכך שעם הקיבול ייכרת חוזה שניתן לקיימו. בית המשפט הוסיף במפורש שאין לפרש את התנאי כמחייב פירוט מראש של כל נושא ועניין. פרטים משניים שחסרים מושלמים לפי ס׳ 26 ולפי ס׳ 41–46."},
 
-  {t:"הצעה וקיבול",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"הצעה וקיבול",src:"פסיקת הקורס",
    q:'נהג נכנס לחניון שבכניסתו שלט תעריפים, וביציאה טוען שלא הסכים למחיר:',
    o:["נכרת חוזה — הכניסה היא קיבול במעשה לביצוע החוזה לפי ס׳ 6(א), משום שדרך קיבול זו משתמעת מן ההצעה.",
       "לא נכרת חוזה, משום שהנהג מעולם לא מסר הודעת קיבול למציע כנדרש בס׳ 5.",
@@ -1042,7 +1038,7 @@ const MC = [
    a:0,
    e:"פ\"ד שג\"מ חניונים. השלט הוא <b>הצעה</b> (פנייה לציבור, גמירת דעת, מסוימות — התעריף), והכניסה פנימה היא <b>קיבול בהתנהגות</b>. התנאי בס׳ 6(א) מתקיים: איש אינו מצפה שתתקשר לבעל החניון להודיע שנכנסת — דרך הקיבול הזו <b>משתמעת מן ההצעה</b>. משבוצעה ההתנהגות דינה כהודעת קיבול, וגם המציע כבר אינו יכול לחזור בו."},
 
-  {t:"תום לב במו\"מ",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"תום לב במו\"מ",src:"פסיקת הקורס",
    q:'לפי פ״ד פנידר נ׳ קסטרו, היקף חובת הגילוי במשא ומתן נקבע לפי:',
    o:["זהות הצדדים, קלות השגת המידע, עלות השגתו ומומחיותו של הצד השני בתחום.",
       "גובה התמורה בעסקה בלבד.",
@@ -1051,7 +1047,7 @@ const MC = [
    a:0,
    e:"ארבעת הפרמטרים מופיעים במפורש במצגת הקורס. הכלל הנגזר מהם: <b>מצופה מהצד החזק לגלות יותר</b> — מי שהמידע נגיש לו בזול, ומי שהצד שכנגד אינו מומחה בתחום. חובת הגילוי היא <b>אקטיבית</b>: לא די בכך שלא שיקרת."},
 
-  {t:"פגמים ברצון",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"פגמים ברצון",src:"פסיקת הקורס",
    q:'נכס נמכר במפורש במצבו "AS-IS", והקונה מגלה בדיעבד מגבלה תכנונית שמפחיתה את שוויו:',
    o:["אין עילת ביטול — נטילת הסיכון המפורשת הופכת זאת לטעות בכדאיות העסקה לפי ס׳ 14(ד).",
       "יש עילת ביטול לפי ס׳ 14(א), משום שחזקה על המוכר שידע.",
@@ -1060,7 +1056,7 @@ const MC = [
    a:0,
    e:"ע\"א 7920/13 כרמל נ׳ טלמון (אושר בדנ\"א 2128/16): תוכן ההסכם והתנהלות הצדדים הובילו למסקנה שהקונה <b>נטל על עצמו את הסיכון</b> למצב התכנוני ולשווי הנגזר ממנו — ולכן זו כדאיות ולא טעות. <b>הבחינו מספקטור:</b> שם דובר בטעות <u>עובדתית לגבי נתון אחר</u> שהשליכה על השווי, וזו כן מקימה עילה."},
 
-  {t:"ביטול והשבה",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"ביטול והשבה",src:"פסיקת הקורס",
    q:'מתי ניתן לבטל רק חלק מחוזה לפי ס׳ 19?',
    o:["כשהחוזה ניתן להפרדה — כל חלק כולל הבטחה שלצידה תמורה נפרדת, והוא יכול לעמוד בפני עצמו.",
       "בכל מקרה שבו עילת הביטול נוגעת רק לחלק מהחוזה.",
@@ -1069,7 +1065,7 @@ const MC = [
    a:0,
    e:"ע\"א 3541/98 די וורולי סיאני נ׳ מינהל מקרקעי ישראל: \"חוזה הניתן להפרדה\" הוא חוזה הכולל מספר הבטחות שלכל אחת תמורה נפרדת, כך שכל הבטחה עומדת על רגליה. אם אין יחידה שלמה הניתנת להפרדה — <b>אין ברירה אלא לבטל את החוזה כולו</b>. וגם כשההפרדה אפשרית, אם יש להניח שהמבטל לא היה מתקשר לולא העילה — הוא רשאי לבטל הכל."},
 
-  {t:"פגמים ברצון",src:"פסיקת הקורס — נוסף 29.8",
+  {t:"פגמים ברצון",src:"פסיקת הקורס",
    q:'מהו יסוד ה"ניצול" בעילת העושק (ס׳ 18)?',
    o:["על העושק לדעת על מצב העשוק ועל כך שהוא מנצל אותו — או למצער לעצום את עיניו.",
       "די בכך שהעשוק היה במצוקה בפועל בעת ההתקשרות.",
@@ -1315,27 +1311,27 @@ const TF = [
 ,
 
   /* --- נוסף: פסיקה מהמצגות הרשמיות של הקורס --- */
-  {t:"הצעה וקיבול",src:"פסיקת הקורס — נוסף 29.8",a:false,
+  {t:"הצעה וקיבול",src:"פסיקת הקורס",a:false,
    q:"שאלת הבהרה של הניצע לגבי תנאי בהצעה מפקיעה את ההצעה.",
    e:"<b>לא נכון.</b> פ\"ד נווה עם נ׳ יעקבסון: רק דחייה <b>מפורשת ואקטיבית</b> מפקיעה הצעה לפי ס׳ 4(1). יש להבחין בינה לבין אמירות שנועדו להשגת אינפורמציה או לשיפור ההצעה — אלה אינן דחייה, וההצעה נותרת בתוקף."},
 
-  {t:"הצעה וקיבול",src:"פסיקת הקורס — נוסף 29.8",a:true,
+  {t:"הצעה וקיבול",src:"פסיקת הקורס",a:true,
    q:"שתיקת הניצע יכולה להוות קיבול, אם הצדדים הסכימו על כך מראש.",
    e:"<b>נכון.</b> הכלל בס׳ 6(ב) הוא שקביעת <b>המציע</b> ששתיקה תיחשב קיבול — אין לה תוקף. אבל פ\"ד אדרת שומרון נ׳ הולינגסוורת: כשהצדדים <b>עצמם הסכימו מראש</b> ששתיקה תהווה קיבול, ההסכמה תקפה. ההגבלה מכוונת נגד כפייה חד־צדדית של המציע, לא נגד הסכמה הדדית. וכן — בהצעה מזכה יש חזקת קיבול בשתיקה לפי ס׳ 7."},
 
-  {t:"תום לב במו\"מ",src:"פסיקת הקורס — נוסף 29.8",a:false,
+  {t:"תום לב במו\"מ",src:"פסיקת הקורס",a:false,
    q:"ניהול משא ומתן מקביל עם כמה מועמדים מהווה כשלעצמו חוסר תום לב.",
    e:"<b>לא נכון.</b> פ\"ד זעירא נ׳ קנית: <b>מותר</b> לנהל משא ומתן מקביל — ובלבד שנוהגים ב<b>שקיפות</b>. ההפרה אינה בריבוי המגעים אלא ב<b>הסתרתם</b>, כשהצד השני מסתמך ומשקיע מתוך הנחה שהוא היחיד."},
 
-  {t:"פגמים ברצון",src:"פסיקת הקורס — נוסף 29.8",a:false,
+  {t:"פגמים ברצון",src:"פסיקת הקורס",a:false,
    q:"טעות לעניין ס׳ 14 יכולה להתייחס גם לציפייה של צד לגבי התפתחות עתידית.",
    e:"<b>לא נכון.</b> ההגדרה (פ\"ד רבינוביץ, וכן פרופ׳ ג׳ שלו) היא \"אמונה של צד לחוזה שאינה תואמת את המציאות\" — והיא מתייחסת ל<b>הווה או לעבר בלבד</b>. ציפייה לעתיד שהתבדתה היא <b>טעות בכדאיות העסקה</b> לפי ס׳ 14(ד), ואינה עילה לביטול."},
 
-  {t:"כפייה",src:"פסיקת הקורס — נוסף 29.8",a:false,
+  {t:"כפייה",src:"פסיקת הקורס",a:false,
    q:"די בהפעלת לחץ עסקי כלשהו על המתקשר כדי לבסס עילת כפייה לפי ס׳ 17.",
    e:"<b>לא נכון.</b> ע\"א 1569/93 מאיה נ׳ פנפורד: נבחנים גם <b>איכות</b> הלחץ (בלתי מוסרי, מנוגד לכללי המשחק) וגם <b>עוצמתו</b> (\"מקדיח את התבשיל\"). לחץ עסקי לגיטימי במשא ומתן אינו כפייה. השוו לרחמים נ׳ אקספומדיה — שם האיום היה מפתיע, חמור ובלתי הפיך, ובעיתוי שבו הצד השני חשוף ופגיע במיוחד. וזכרו את ס׳ 17(ב): אזהרה בתום לב על הפעלת זכות אינה איום."},
 
-  {t:"פיצויים",src:"פסיקת הקורס — נוסף 29.8",a:false,
+  {t:"פיצויים",src:"פסיקת הקורס",a:false,
    q:"נפגע מהפרת חוזה רשאי להמתין ולתבוע את מלוא נזקו, גם אם יכול היה להקטינו באמצעים סבירים.",
    e:"<b>לא נכון.</b> ס׳ 14(א) לחוק התרופות: אין המפר חייב בפיצויים בעד נזק שהנפגע יכול היה, באמצעים סבירים, למנוע או להקטין (פ\"ד תושייה). ולהפך — לפי ס׳ 14(ב), הוציא הנפגע הוצאות סבירות להקטנת הנזק, <b>המפר חייב לשפותו עליהן</b>, בין אם הנזק נמנע ובין אם לאו."}
 
@@ -2622,76 +2618,86 @@ const REF_HTML = `
 const $ = id => document.getElementById(id);
 const LET = ["א","ב","ג","ד","ה"];
 
+/* ---- progress ------------------------------------------------------------
+   What the user does is kept in this browser: answers, written reasoning,
+   case drafts, the open tab and where they stopped. Questions are keyed by a
+   hash of their text, not their position, so adding or reordering questions
+   later never moves a saved answer onto a different question.             */
+const LS_KEY = "laq-progress-v1";
+let SAVE = {};
+try { SAVE = JSON.parse(localStorage.getItem(LS_KEY) || "{}") || {}; } catch (e) { SAVE = {}; }
+let saveT = null;
+function saveNow(){ clearTimeout(saveT); try { localStorage.setItem(LS_KEY, JSON.stringify(SAVE)); } catch (e) {} }
+function save(){ clearTimeout(saveT); saveT = setTimeout(saveNow, 400); }
+window.addEventListener("pagehide", saveNow);
+function qid(s){ let h = 5381; s = String(s); for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+
 /* ---- tabs ---- */
 const VIEWS = ["home","mc","tf","cases","quiz","exam","ref"];
-document.querySelectorAll("#tabs .tab").forEach(b=>{
-  b.onclick = ()=>{
-    document.querySelectorAll("#tabs .tab").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    const v = b.dataset.view;
-    VIEWS.forEach(x=>$("v-"+x).classList.toggle("hide", x!==v));
-    window.scrollTo(0,0);
-    if(v==="ref" && !$("refBody").innerHTML){ $("refBody").innerHTML = REF_HTML; $("refBody").querySelectorAll("table.ref").forEach(t=>{ const w=document.createElement("div"); w.className="tblwrap"; t.parentNode.insertBefore(w,t); w.appendChild(t); }); }
-  };
-});
+let curView = "home";
+function goView(v, keepScroll){
+  if (VIEWS.indexOf(v) < 0) v = "home";
+  curView = v;
+  document.querySelectorAll("#tabs .tab").forEach(x=>x.classList.toggle("active", x.dataset.view===v));
+  VIEWS.forEach(x=>$("v-"+x).classList.toggle("hide", x!==v));
+  if(!keepScroll) window.scrollTo(0,0);
+  if(v==="ref" && !$("refBody").innerHTML){ $("refBody").innerHTML = REF_HTML; $("refBody").querySelectorAll("table.ref").forEach(t=>{ const w=document.createElement("div"); w.className="tblwrap"; t.parentNode.insertBefore(w,t); w.appendChild(t); }); }
+  SAVE.view = v; save();
+}
+document.querySelectorAll("#tabs .tab").forEach(b=>{ b.onclick = ()=>goView(b.dataset.view); });
 
 
 const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
 
 
-/* ---- scope presets ----------------------------------------------------
-   Matching runs on the QUESTION only. Explanations legitimately reference
-   out-of-scope law for contrast — a s.12 remedy question that compares to the
-   Remedies Law is still a s.12 question — and matching on them was throwing
-   away core items.
-   ס׳ 18 (עושק) is out of BOTH the quiz and the final exam (lecturer, 30.8),
-   so it is excluded everywhere rather than only from the 8.9 preset.        */
-const SCOPE89_TOPICS = ["הצעה וקיבול", "תום לב במו\"מ", "זיכרון דברים", "פגמים ברצון", "צורה ותוכן", "ביטול והשבה", "חוזה על תנאי"];
-const SCOPE89_OUT = ["לחוק התרופות", "חוק התרופות", "סיכול", "הפרה צפויה", "ס' 16", "ס' 17", "ס' 18", "סעיף 16", "סעיף 17", "סעיף 18", "טעות סופר", "כפייה", "כפיה", "עושק", "סיכול תנאי", "למראית עין", "פירוש החוזה"];
-const COURSE_OUT  = ["עושק"];          /* not examined at all */
+/* ---- scope preset: the final exam -----------------------------------------
+   Everything taught in the course is in. Out, in the lecturer's words:
+   עושק (ס׳ 18) — "לא יהיה במבחן"; סיכול תנאי (28) and פירוש (25) were not
+   taught; ריבוי נושים (57–59) — "לא מעניין"; למראית עין (13) was not taught.
+   Matching runs on the QUESTION only: explanations legitimately cite
+   out-of-scope law for contrast, and matching on them threw away core items. */
+const SCOPE_OUT = ["עושק", "סיכול תנאי", "פירוש החוזה", "ריבוי נושים", "למראית עין"];
 function scNorm(t){ return String(t).replace(/[׳״'"’]/g, "'").replace(/\s+/g, " "); }
-function outOfCourse(q){
+function inScope(q){
   const hay = scNorm(q.q || "");
-  return COURSE_OUT.some(function(o){ return hay.indexOf(scNorm(o)) >= 0; });
+  return !SCOPE_OUT.some(function(o){ return hay.indexOf(scNorm(o)) >= 0; });
 }
-function inScope89(q){
-  if (SCOPE89_TOPICS.indexOf(q.t) < 0) return false;
-  const hay = scNorm(q.q || "");
-  for (let i = 0; i < SCOPE89_OUT.length; i++) if (hay.indexOf(scNorm(SCOPE89_OUT[i])) >= 0) return false;
-  return true;
-}
-const SCOPE_LABEL = "בהיקף 8.9";
+const SCOPE_LABEL = "בהיקף המבחן";
 
 /* ================= MC ================= */
-let mcList=[], mcI=0, mcAns={}, mcTopic="הכל", mcOk=0, mcBad=0, mcStreak=0;
-
+const MCK = MC.map(q=>qid(q.q));
+let mcList=[], mcI=0, mcAns=SAVE.mc||{}, mcTopic=SAVE.mcTopic||SCOPE_LABEL, mcOk=0, mcBad=0, mcStreak=SAVE.mcStreak||0;
 function mcTopics(){ return ["הכל", ...Array.from(new Set(MC.map(q=>q.t)))]; }
-function mcBuild(){
-  mcList = MC.map((q,i)=>({...q,_id:i})).filter(q=>
-    mcTopic==="הכל" ? true : (mcTopic===SCOPE_LABEL ? inScope89(q) : q.t===mcTopic));
-  mcI=0; mcRender();
+if([SCOPE_LABEL, ...mcTopics()].indexOf(mcTopic) < 0) mcTopic = SCOPE_LABEL;
+function mcCount(){ mcOk=0; mcBad=0; MC.forEach((q,i)=>{ const a=mcAns[MCK[i]]; if(a!==undefined){ if(a===q.a) mcOk++; else mcBad++; } }); }
+function mcBuild(keepKey){
+  mcList = MC.map((q,i)=>({...q,_id:i,_k:MCK[i]})).filter(q=>
+    mcTopic==="הכל" ? true : (mcTopic===SCOPE_LABEL ? inScope(q) : q.t===mcTopic));
+  const at = keepKey ? mcList.findIndex(q=>q._k===keepKey) : -1;
+  mcI = at>=0 ? at : 0; mcRender();
 }
 function mcRenderFilters(){
   const w=$("mcFilters"); w.innerHTML="";
   [SCOPE_LABEL, ...mcTopics()].forEach(t=>{
     const b=document.createElement("button");
     b.className="chip"+(t===mcTopic?" active":"")+(t===SCOPE_LABEL?" scope":"");
-    const n = t===SCOPE_LABEL?MC.filter(inScope89).length:(t==="הכל"?MC.length:MC.filter(q=>q.t===t).length);
+    const n = t===SCOPE_LABEL?MC.filter(inScope).length:(t==="הכל"?MC.length:MC.filter(q=>q.t===t).length);
     b.textContent = t+" ("+n+")";
-    b.onclick=()=>{mcTopic=t; mcRenderFilters(); mcBuild();};
+    b.onclick=()=>{mcTopic=t; SAVE.mcTopic=t; save(); mcRenderFilters(); mcBuild();};
     w.appendChild(b);
   });
 }
 function mcRender(){
-  if(!mcList.length){$("mcQ").textContent="אין שאלות בנושא זה.";return;}
+  if(!mcList.length){$("mcQ").textContent="אין שאלות בנושא זה.";$("mcOpts").innerHTML="";$("mcPal").innerHTML="";return;}
   const q=mcList[mcI];
+  SAVE.mcCur=q._k; save();
   $("mcPos").textContent=mcI+1; $("mcTot").textContent=mcList.length;
   $("mcOk").textContent=mcOk; $("mcBad").textContent=mcBad; $("mcStreak").textContent=mcStreak;
   $("mcBar").style.width=((mcI+1)/mcList.length*100)+"%";
   $("mcMeta").innerHTML = q.t + (q.src? " · <i>"+q.src+"</i>" : "");
   $("mcQ").textContent=q.q;
   const box=$("mcOpts"); box.innerHTML="";
-  const chosen = mcAns[q._id];
+  const chosen = mcAns[q._k];
   q.o.forEach((txt,i)=>{
     const d=document.createElement("div");
     d.className="opt";
@@ -2707,12 +2713,14 @@ function mcRender(){
   const e=$("mcExpl");
   if(chosen!==undefined){ e.classList.add("show"); e.innerHTML='<span class="tag">הסבר · </span>'+q.e; }
   else { e.classList.remove("show"); e.innerHTML=""; }
+  $("mcPrev").disabled = mcI===0; $("mcNext").disabled = mcI===mcList.length-1;
   mcPal();
 }
 function mcPick(q,i){
-  if(mcAns[q._id]!==undefined) return;
-  mcAns[q._id]=i;
+  if(mcAns[q._k]!==undefined) return;
+  mcAns[q._k]=i;
   if(i===q.a){mcOk++;mcStreak++;} else {mcBad++;mcStreak=0;}
+  SAVE.mc=mcAns; SAVE.mcStreak=mcStreak; save();
   mcRender();
 }
 function mcPal(){
@@ -2720,7 +2728,7 @@ function mcPal(){
   mcList.forEach((q,i)=>{
     const b=document.createElement("button");
     b.className="pbtn"+(i===mcI?" cur":"");
-    const a=mcAns[q._id];
+    const a=mcAns[q._k];
     if(a!==undefined) b.classList.add(a===q.a?"ok":"bad");
     b.textContent=i+1;
     b.onclick=()=>{mcI=i;mcRender();window.scrollTo(0,0);};
@@ -2730,90 +2738,111 @@ function mcPal(){
 $("mcPrev").onclick=()=>{if(mcI>0){mcI--;mcRender();}};
 $("mcNext").onclick=()=>{if(mcI<mcList.length-1){mcI++;mcRender();}};
 $("mcShuffle").onclick=()=>{shuffle(mcList);mcI=0;mcRender();};
-$("mcReset").onclick=()=>{mcAns={};mcOk=0;mcBad=0;mcStreak=0;mcI=0;mcRender();};
-mcRenderFilters(); mcBuild();
+$("mcReset").onclick=()=>{
+  if(!confirm("למחוק את כל התשובות בתרגול הרב-ברירה ולהתחיל מחדש?")) return;
+  mcAns={};mcOk=0;mcBad=0;mcStreak=0; SAVE.mc=mcAns; SAVE.mcStreak=0; save(); mcI=0; mcRender();
+};
+mcCount(); mcRenderFilters(); mcBuild(SAVE.mcCur);
 
 /* ================= TF =================
-   The written reasoning and the reveal state are keyed by the statement's
-   index in TF, not stored on the filtered copies — otherwise changing topic
-   or shuffling silently discards what the user wrote.
+   The written reasoning and the reveal state are keyed by the statement
+   itself, not stored on the filtered copies — otherwise changing topic or
+   shuffling silently discards what the user wrote.
    Committing an answer shows only the verdict; the model reasoning waits for
    the button, so the user still has to produce the justification themselves. */
-let tfList=[], tfI=0, tfAns={}, tfMine={}, tfShown={}, tfTopic="הכל", tfOk=0;
-function tfBuild(){
-  tfList = TF.map((q,i)=>({...q,_id:i})).filter(q=>
-    tfTopic==="הכל" ? true : (tfTopic===SCOPE_LABEL ? inScope89(q) : q.t===tfTopic));
-  tfI=0; tfRender();
+const TFK = TF.map(q=>qid(q.q));
+if(!SAVE.tf) SAVE.tf = {a:{}, m:{}, s:{}};
+let tfList=[], tfI=0, tfAns=SAVE.tf.a, tfMine=SAVE.tf.m, tfShown=SAVE.tf.s, tfTopic=SAVE.tfTopic||SCOPE_LABEL, tfOk=0;
+function tfTopics(){ return ["הכל", ...Array.from(new Set(TF.map(q=>q.t)))]; }
+if([SCOPE_LABEL, ...tfTopics()].indexOf(tfTopic) < 0) tfTopic = SCOPE_LABEL;
+function tfCount(){ tfOk=0; TF.forEach((q,i)=>{ if(tfAns[TFK[i]]===q.a) tfOk++; }); }
+function tfBuild(keepKey){
+  tfList = TF.map((q,i)=>({...q,_id:i,_k:TFK[i]})).filter(q=>
+    tfTopic==="הכל" ? true : (tfTopic===SCOPE_LABEL ? inScope(q) : q.t===tfTopic));
+  const at = keepKey ? tfList.findIndex(q=>q._k===keepKey) : -1;
+  tfI = at>=0 ? at : 0; tfRender();
 }
 function tfRenderFilters(){
   const w=$("tfFilters"); w.innerHTML="";
-  [SCOPE_LABEL,"הכל",...Array.from(new Set(TF.map(q=>q.t)))].forEach(t=>{
+  [SCOPE_LABEL, ...tfTopics()].forEach(t=>{
     const b=document.createElement("button");
     b.className="chip"+(t===tfTopic?" active":"")+(t===SCOPE_LABEL?" scope":"");
-    const n = t===SCOPE_LABEL?TF.filter(inScope89).length:(t==="הכל"?TF.length:TF.filter(q=>q.t===t).length);
+    const n = t===SCOPE_LABEL?TF.filter(inScope).length:(t==="הכל"?TF.length:TF.filter(q=>q.t===t).length);
     b.textContent=t+" ("+n+")";
-    b.onclick=()=>{tfTopic=t;tfRenderFilters();tfBuild();};
+    b.onclick=()=>{tfTopic=t; SAVE.tfTopic=t; save(); tfRenderFilters(); tfBuild();};
     w.appendChild(b);
   });
 }
 function tfRender(){
-  if(!tfList.length){$("tfQ").textContent="אין היגדים בנושא זה.";return;}
+  if(!tfList.length){$("tfQ").textContent="אין היגדים בנושא זה.";$("tfPal").innerHTML="";return;}
   const q=tfList[tfI];
+  SAVE.tfCur=q._k; save();
   $("tfMeta").innerHTML = "היגד "+(tfI+1)+"/"+tfList.length+" · "+q.t+(q.src?" · <i>"+q.src+"</i>":"");
   $("tfQ").textContent=q.q;
   $("tfTot").textContent=tfList.length; $("tfOk").textContent=tfOk;
-  const a=tfAns[q._id];
+  const a=tfAns[q._k];
   $("tfTrue").className="btn"+(a===true?" sel-t":"");
   $("tfFalse").className="btn"+(a===false?" sel-f":"");
-  $("tfMine").value = tfMine[q._id] || "";
+  $("tfMine").value = tfMine[q._k] || "";
   const v=$("tfVerdict");
   if(a===undefined){ v.className="verdict hide"; v.textContent=""; }
   else if(a===q.a){ v.className="verdict ok"; v.textContent="✓ צדקתם. עכשיו כתבו את הנימוק — זה מה שמנוקד."; }
   else { v.className="verdict no"; v.textContent="✗ טעיתם. כתבו למה חשבתם כך, ואז השוו לתשובת המודל."; }
-  const shown = !!tfShown[q._id];
+  const shown = !!tfShown[q._k];
   const btn=$("tfShow");
   btn.textContent = shown ? "תשובת המודל מוצגת" : "הצג תשובת מודל";
   btn.disabled = shown;
   const e=$("tfExpl");
   if(shown){ e.classList.add("show"); e.innerHTML='<span class="tag">תשובת מודל · </span>'+q.e; }
   else { e.classList.remove("show"); e.innerHTML=""; }
+  $("tfPrev").disabled = tfI===0; $("tfNext").disabled = tfI===tfList.length-1;
   tfPal();
 }
 function tfPick(v){
   const q=tfList[tfI];
-  if(tfAns[q._id]!==undefined) return;
-  tfAns[q._id]=v;
+  if(!q || tfAns[q._k]!==undefined) return;
+  tfAns[q._k]=v;
   if(v===q.a) tfOk++;
-  tfRender();
+  save(); tfRender();
 }
 function tfPal(){
   const w=$("tfPal"); w.innerHTML="";
   tfList.forEach((q,i)=>{
     const b=document.createElement("button");
     b.className="pbtn"+(i===tfI?" cur":"");
-    const a=tfAns[q._id];
+    const a=tfAns[q._k];
     if(a!==undefined) b.classList.add(a===q.a?"ok":"bad");
     b.textContent=i+1;
     b.onclick=()=>{tfI=i;tfRender();window.scrollTo(0,0);};
     w.appendChild(b);
   });
 }
-$("tfMine").oninput=e=>{ const q=tfList[tfI]; if(q) tfMine[q._id]=e.target.value; };
+$("tfMine").oninput=e=>{ const q=tfList[tfI]; if(!q) return; if(e.target.value) tfMine[q._k]=e.target.value; else delete tfMine[q._k]; save(); };
 $("tfTrue").onclick=()=>tfPick(true);
 $("tfFalse").onclick=()=>tfPick(false);
-$("tfShow").onclick=()=>{ const q=tfList[tfI]; if(q){ tfShown[q._id]=true; tfRender(); } };
+$("tfShow").onclick=()=>{ const q=tfList[tfI]; if(q){ tfShown[q._k]=true; save(); tfRender(); } };
 $("tfPrev").onclick=()=>{if(tfI>0){tfI--;tfRender();}};
 $("tfNext").onclick=()=>{if(tfI<tfList.length-1){tfI++;tfRender();}};
 $("tfShuffle").onclick=()=>{shuffle(tfList);tfI=0;tfRender();};
-$("tfReset").onclick=()=>{tfAns={};tfMine={};tfShown={};tfOk=0;tfI=0;tfRender();};
-tfRenderFilters(); tfBuild();
+$("tfReset").onclick=()=>{
+  if(!confirm("למחוק את כל התשובות והנימוקים בהיגדים ולהתחיל מחדש?")) return;
+  SAVE.tf = {a:{}, m:{}, s:{}}; tfAns=SAVE.tf.a; tfMine=SAVE.tf.m; tfShown=SAVE.tf.s; tfOk=0; save(); tfI=0; tfRender();
+};
+tfCount(); tfRenderFilters(); tfBuild(SAVE.tfCur);
 
-/* ================= CASES ================= */
+/* ================= CASES =================
+   Drafts and "solution viewed" are kept per case title. Reopening a case
+   keeps the draft but hides the solution again, so it can be re-practised. */
+if(!SAVE.cases) SAVE.cases = {m:{}, s:{}};
+const CS = SAVE.cases;
+function caseMark(c){
+  return CS.s[c.title] ? '<span class="done">✓ הפתרון נקרא</span>' : (CS.m[c.title] ? '<span class="done draft">✍ יש טיוטה</span>' : '');
+}
 function casesRender(){
   const ul=$("caseUl"); ul.innerHTML="";
   CASES.forEach((c,i)=>{
     const li=document.createElement("li");
-    li.innerHTML='<span class="lvl">'+c.lvl+'</span><b>'+(i+1)+'. '+c.title+'</b><br><span style="color:var(--muted);font-size:12.5px">'+c.src+'</span>';
+    li.innerHTML='<span class="lvl">'+c.lvl+'</span><b>'+(i+1)+'. '+c.title+'</b>'+caseMark(c)+'<br><span style="color:var(--muted);font-size:12.5px">'+c.src+'</span>';
     li.onclick=()=>openCase(i);
     ul.appendChild(li);
   });
@@ -2821,16 +2850,31 @@ function casesRender(){
 let curCase=0;
 function openCase(i){
   curCase=i; const c=CASES[i];
+  SAVE.caseCur=i; save();
   $("caseIndex").classList.add("hide"); $("caseView").classList.remove("hide");
-  $("caseTitle").textContent=c.title; $("caseSrc").textContent=c.src+" · "+c.lvl;
+  $("caseTitle").textContent=(i+1)+". "+c.title; $("caseSrc").textContent=c.src+" · "+c.lvl;
   $("caseBody").innerHTML=c.body.replace(/\n/g,"<br>");
-  $("caseMine").value=c._mine||"";
+  $("caseMine").value=CS.m[c.title]||"";
   $("caseSol").classList.remove("show"); $("caseSol").innerHTML="";
+  $("casePrev").disabled = i===0; $("caseNext").disabled = i===CASES.length-1;
+  casePal();
   window.scrollTo(0,0);
 }
-$("caseMine").oninput=e=>{CASES[curCase]._mine=e.target.value;};
-$("caseBack").onclick=()=>{$("caseIndex").classList.remove("hide");$("caseView").classList.add("hide");window.scrollTo(0,0);};
-$("caseShow").onclick=()=>{const s=$("caseSol");s.innerHTML=CASES[curCase].sol.replace(/\n/g,"<br>");s.classList.add("show");};
+function casePal(){
+  const w=$("casePal"); w.innerHTML="";
+  CASES.forEach((c,i)=>{
+    const b=document.createElement("button");
+    b.className="pbtn"+(i===curCase?" cur":"")+(CS.s[c.title]?" ok":"");
+    b.textContent=i+1; b.title=c.title;
+    b.onclick=()=>openCase(i);
+    w.appendChild(b);
+  });
+}
+$("caseMine").oninput=e=>{ const t=CASES[curCase].title; if(e.target.value) CS.m[t]=e.target.value; else delete CS.m[t]; save(); };
+$("caseBack").onclick=()=>{ SAVE.caseCur=null; save(); casesRender(); $("caseIndex").classList.remove("hide");$("caseView").classList.add("hide");window.scrollTo(0,0);};
+$("caseShow").onclick=()=>{ const c=CASES[curCase]; CS.s[c.title]=true; save(); const s=$("caseSol");s.innerHTML=c.sol.replace(/\n/g,"<br>");s.classList.add("show"); casePal(); };
+$("casePrev").onclick=()=>{ if(curCase>0) openCase(curCase-1); };
+$("caseNext").onclick=()=>{ if(curCase<CASES.length-1) openCase(curCase+1); };
 casesRender();
 
 /* ================= QUIZ ================= */
@@ -2847,7 +2891,7 @@ function qzLenBtns(){
 }
 qzLenBtns();
 $("quizGo").onclick=()=>{
-  qzList = shuffle(MC.slice()).slice(0,Math.min(qzLen,MC.length));
+  qzList = shuffle(MC.filter(inScope)).slice(0,Math.min(qzLen,MC.length));
   qzI=0; qzAns={}; qzSec=qzLen*180;
   $("quizStart").classList.add("hide"); $("quizRes").classList.add("hide");
   $("quizRun").classList.remove("hide");
@@ -2876,6 +2920,7 @@ function qzRender(){
     d.onclick=()=>{qzAns[qzI]=i; qzRender();};
     box.appendChild(d);
   });
+  $("qzPrev").disabled = qzI===0; $("qzNext").disabled = qzI===qzList.length-1;
   const w=$("qzPal"); w.innerHTML="";
   qzList.forEach((_,i)=>{
     const b=document.createElement("button");
@@ -2897,7 +2942,7 @@ function qzFinish(){
   html+='<div style="text-align:right;margin-top:16px">';
   qzList.forEach((q,i)=>{
     const good = qzAns[i]===q.a;
-    html+='<div style="border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:9px;background:'+(good?"var(--okBg)":"var(--errBg)")+'">';
+    html+='<div style="border:1px solid var(--rule);border-radius:10px;padding:12px;margin-bottom:9px;background:'+(good?"var(--okBg)":"var(--badBg)")+'">';
     html+='<b>'+(i+1)+'. '+q.q+'</b><br>';
     html+='<span style="font-size:13px">תשובתך: '+(qzAns[i]!==undefined?LET[qzAns[i]]+". "+q.o[qzAns[i]]:"—")+'<br>';
     html+='<b>הנכונה: '+LET[q.a]+". "+q.o[q.a]+'</b><br><span style="color:var(--muted)">'+q.e+'</span></span></div>';
@@ -2927,12 +2972,22 @@ function examsRender(){
 }
 function openExam(i){
   curExam=i; const e=EXAMS[i];
+  SAVE.examCur=i; save();
   $("examIndex").classList.add("hide"); $("examView").classList.remove("hide");
   $("examTitle").textContent=e.title;
   $("examBody").innerHTML=e.body;
   $("examSol").classList.remove("show"); $("examSol").innerHTML="";
   exSec=e.minutes*60; exRun=false; clearInterval(exT);
   $("exTimer").textContent=e.minutes+":00"; $("exTimerBtn").textContent="התחל";
+  $("examPrev").disabled = i===0; $("examNext").disabled = i===EXAMS.length-1;
+  const w=$("examPal"); w.innerHTML="";
+  EXAMS.forEach((x,j)=>{
+    const b=document.createElement("button");
+    b.className="pbtn"+(j===i?" cur":"");
+    b.textContent=j+1; b.title=x.title;
+    b.onclick=()=>openExam(j);
+    w.appendChild(b);
+  });
   window.scrollTo(0,0);
 }
 $("exTimerBtn").onclick=()=>{
@@ -2947,9 +3002,40 @@ $("exTimerBtn").onclick=()=>{
     if(exSec<=0){clearInterval(exT);exRun=false;}
   },1000);
 };
-$("examBack").onclick=()=>{clearInterval(exT);exRun=false;$("examIndex").classList.remove("hide");$("examView").classList.add("hide");window.scrollTo(0,0);};
+$("examBack").onclick=()=>{clearInterval(exT);exRun=false;SAVE.examCur=null;save();$("examIndex").classList.remove("hide");$("examView").classList.add("hide");window.scrollTo(0,0);};
 $("examShow").onclick=()=>{const s=$("examSol");s.innerHTML=EXAMS[curExam].sol.replace(/\n/g,"<br>");s.classList.add("show");};
+$("examPrev").onclick=()=>{ if(curExam>0){ clearInterval(exT); openExam(curExam-1); } };
+$("examNext").onclick=()=>{ if(curExam<EXAMS.length-1){ clearInterval(exT); openExam(curExam+1); } };
 examsRender();
+
+/* ---- keyboard: in RTL, ← is "next" and → is "previous"; 1–5 pick an option ---- */
+document.addEventListener("keydown", e=>{
+  const t=e.target;
+  if(t && (t.tagName==="TEXTAREA" || t.tagName==="INPUT" || t.isContentEditable)) return;
+  if(e.ctrlKey || e.metaKey || e.altKey) return;
+  const nextK = e.key==="ArrowLeft", prevK = e.key==="ArrowRight", num = /^[1-5]$/.test(e.key) ? +e.key-1 : -1;
+  let used = true;
+  if(curView==="mc"){
+    if(nextK) $("mcNext").click(); else if(prevK) $("mcPrev").click();
+    else if(num>=0 && mcList[mcI] && num<mcList[mcI].o.length) mcPick(mcList[mcI], num); else used=false;
+  } else if(curView==="tf"){
+    if(nextK) $("tfNext").click(); else if(prevK) $("tfPrev").click();
+    else if(e.key==="1") tfPick(true); else if(e.key==="2") tfPick(false); else used=false;
+  } else if(curView==="quiz" && !$("quizRun").classList.contains("hide")){
+    if(nextK) $("qzNext").click(); else if(prevK) $("qzPrev").click();
+    else if(num>=0 && qzList[qzI] && num<qzList[qzI].o.length){ qzAns[qzI]=num; qzRender(); } else used=false;
+  } else if(curView==="cases" && !$("caseView").classList.contains("hide")){
+    if(nextK) $("caseNext").click(); else if(prevK) $("casePrev").click(); else used=false;
+  } else if(curView==="exam" && !$("examView").classList.contains("hide")){
+    if(nextK) $("examNext").click(); else if(prevK) $("examPrev").click(); else used=false;
+  } else used=false;
+  if(used) e.preventDefault();
+});
+
+/* ---- resume where the user stopped ---- */
+goView(SAVE.view || "home");
+if(curView==="cases" && typeof SAVE.caseCur==="number" && CASES[SAVE.caseCur]) openCase(SAVE.caseCur);
+if(curView==="exam" && typeof SAVE.examCur==="number" && EXAMS[SAVE.examCur]) openExam(SAVE.examCur);
 </script>
 </body>
 </html>
