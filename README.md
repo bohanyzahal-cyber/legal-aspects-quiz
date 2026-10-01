@@ -4,6 +4,9 @@
 
 ### 👈 [כניסה לאתר התרגול](https://bohanyzahal-cyber.github.io/legal-aspects-quiz/)
 ### 🖨️ [דף העזר למבחן — להדפסה](https://bohanyzahal-cyber.github.io/legal-aspects-quiz/cheatsheet.html)
+### 🎧 [פודקאסט למבחן המסכם — כ־45 דקות](https://bohanyzahal-cyber.github.io/bar-ilan-legal-aspects/podcast/)
+
+שלושה פרקים בשני קולות: אכיפה וביטול; פיצויים, הפרה צפויה וסיכול; סדנת קייס חיים ויעל. שאלות עם זמן לחשוב, תמלילים, שמירת מקום ומהירות והורדת MP3 לטלפון.
 
 ---
 
