@@ -2895,7 +2895,7 @@ function openCase(i){
   $("caseIndex").classList.add("hide"); $("caseView").classList.remove("hide");
   const ids=caseIds(),position=ids.indexOf(i);
   $("caseTitle").textContent=(position+1)+". "+c.title; $("caseSrc").textContent=c.src+" · "+c.lvl;
-  if(c.sourceUrl){const a=document.createElement("a");a.href=c.sourceUrl;a.target="_blank";a.rel="noopener";a.textContent="קובץ המרצה בלמדה";$("caseSrc").append(document.createTextNode(" · "),a);}
+  if(c.sourceUrl){const a=document.createElement("a");a.href=c.sourceUrl;a.target="_blank";a.rel="noopener";a.textContent="מקור הקורס בלמדה";$("caseSrc").append(document.createTextNode(" · "),a);}
   $("caseSourceNote").textContent=c.sourceNote;
   $("caseBody").innerHTML=c.body.replace(/\n/g,"<br>");
   $("caseMine").value=CS.m[c.title]||"";
