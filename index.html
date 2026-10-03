@@ -2688,8 +2688,9 @@ $("tfReset").onclick=()=>{
 tfCount(); tfRenderFilters(); tfBuild(SAVE.tfCur);
 
 /* ================= CASES =================
-   Drafts and "solution viewed" are kept per case title. Reopening a case
-   keeps the draft but hides the solution again, so it can be re-practised. */
+   Drafts and "solution shown" are kept per case title. Reopening a case
+   brings back the draft and the solution that was opened with it; hiding
+   the solution puts the case back in practice state. */
 if(!SAVE.cases) SAVE.cases = {m:{}, s:{}};
 const CS = SAVE.cases;
 let caseBand = SAVE.caseBand === "all" ? "all" : "course";
@@ -2728,10 +2729,16 @@ function openCase(i){
   $("caseSourceNote").textContent=c.sourceNote;
   $("caseBody").innerHTML=c.body.replace(/\n/g,"<br>");
   $("caseMine").value=CS.m[c.title]||"";
-  $("caseSol").classList.remove("show"); $("caseSol").innerHTML="";
+  caseSolRender();
   $("casePrev").disabled = position===0; $("caseNext").disabled = position===ids.length-1;
   casePal();
   window.scrollTo(0,0);
+}
+function caseSolRender(){
+  const c=CASES[curCase], s=$("caseSol"), shown=!!CS.s[c.title];
+  s.innerHTML = shown ? c.sol.replace(/\n/g,"<br>") : "";
+  s.classList.toggle("show", shown);
+  $("caseShow").textContent = shown ? "הסתר את הפתרון" : "הצג פתרון מודל";
 }
 function casePal(){
   const w=$("casePal"); w.innerHTML="";
@@ -2746,7 +2753,7 @@ function casePal(){
 }
 $("caseMine").oninput=e=>{ const t=CASES[curCase].title; if(e.target.value) CS.m[t]=e.target.value; else delete CS.m[t]; save(); };
 $("caseBack").onclick=()=>{ SAVE.caseCur=null; save(); casesRender(); $("caseIndex").classList.remove("hide");$("caseView").classList.add("hide");window.scrollTo(0,0);};
-$("caseShow").onclick=()=>{ const c=CASES[curCase]; CS.s[c.title]=true; save(); const s=$("caseSol");s.innerHTML=c.sol.replace(/\n/g,"<br>");s.classList.add("show"); casePal(); };
+$("caseShow").onclick=()=>{ const t=CASES[curCase].title; if(CS.s[t]) delete CS.s[t]; else CS.s[t]=true; save(); caseSolRender(); casePal(); };
 $("casePrev").onclick=()=>{ const ids=caseIds(),at=ids.indexOf(curCase);if(at>0)openCase(ids[at-1]); };
 $("caseNext").onclick=()=>{ const ids=caseIds(),at=ids.indexOf(curCase);if(at+1<ids.length)openCase(ids[at+1]); };
 casesRender();
@@ -2835,6 +2842,8 @@ function quizAgain(){
 
 /* ================= EXAM ================= */
 let curExam=0, exT=null, exSec=0, exRun=false;
+if(!SAVE.exams) SAVE.exams = {s:{}};
+const ES = SAVE.exams;   // exams whose full solution is open, by title
 function examsRender(){
   const ul=$("examUl"); ul.innerHTML="";
   EXAMS.forEach((e,i)=>{
@@ -2850,19 +2859,28 @@ function openExam(i){
   $("examIndex").classList.add("hide"); $("examView").classList.remove("hide");
   $("examTitle").textContent=e.title;
   $("examBody").innerHTML=e.body;
-  $("examSol").classList.remove("show"); $("examSol").innerHTML="";
+  examSolRender();
   exSec=e.minutes*60; exRun=false; clearInterval(exT);
   $("exTimer").textContent=e.minutes+":00"; $("exTimerBtn").textContent="התחל";
   $("examPrev").disabled = i===0; $("examNext").disabled = i===EXAMS.length-1;
+  examPal();
+  window.scrollTo(0,0);
+}
+function examSolRender(){
+  const e=EXAMS[curExam], s=$("examSol"), shown=!!ES.s[e.title];
+  s.innerHTML = shown ? e.sol.replace(/\n/g,"<br>") : "";
+  s.classList.toggle("show", shown);
+  $("examShow").textContent = shown ? "הסתר את הפתרון" : "הצג פתרון מלא";
+}
+function examPal(){
   const w=$("examPal"); w.innerHTML="";
   EXAMS.forEach((x,j)=>{
     const b=document.createElement("button");
-    b.className="pbtn"+(j===i?" cur":"");
+    b.className="pbtn"+(j===curExam?" cur":"")+(ES.s[x.title]?" ok":"");
     b.textContent=j+1; b.title=x.title;
     b.onclick=()=>openExam(j);
     w.appendChild(b);
   });
-  window.scrollTo(0,0);
 }
 $("exTimerBtn").onclick=()=>{
   if(exRun){ clearInterval(exT); exRun=false; $("exTimerBtn").textContent="המשך"; return; }
@@ -2877,7 +2895,7 @@ $("exTimerBtn").onclick=()=>{
   },1000);
 };
 $("examBack").onclick=()=>{clearInterval(exT);exRun=false;SAVE.examCur=null;save();$("examIndex").classList.remove("hide");$("examView").classList.add("hide");window.scrollTo(0,0);};
-$("examShow").onclick=()=>{const s=$("examSol");s.innerHTML=EXAMS[curExam].sol.replace(/\n/g,"<br>");s.classList.add("show");};
+$("examShow").onclick=()=>{ const t=EXAMS[curExam].title; if(ES.s[t]) delete ES.s[t]; else ES.s[t]=true; save(); examSolRender(); examPal(); };
 $("examPrev").onclick=()=>{ if(curExam>0){ clearInterval(exT); openExam(curExam-1); } };
 $("examNext").onclick=()=>{ if(curExam<EXAMS.length-1){ clearInterval(exT); openExam(curExam+1); } };
 examsRender();
